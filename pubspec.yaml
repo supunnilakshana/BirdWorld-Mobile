@@ -24,9 +24,11 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   image_picker: ^0.8.7
   google_fonts: ^4.0.3
+  intl: ^0.18.0
   fluttertoast: ^8.2.1
   firebase_core: ^2.8.0
   firebase_storage: ^11.0.16
+
 
 
 dev_dependencies:
