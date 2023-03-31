@@ -2,6 +2,7 @@ import 'package:birdworld/core/config/routes/router.router.dart';
 import 'package:birdworld/locator.dart';
 import 'package:birdworld/provider_setup.dart';
 import 'package:birdworld/ui/theme/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -10,7 +11,7 @@ import 'package:provider/provider.dart' as pd;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
+  await Firebase.initializeApp();
   setupLocator();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

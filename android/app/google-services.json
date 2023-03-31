@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "801488927192",
+    "project_id": "birdworld-137aa",
+    "storage_bucket": "birdworld-137aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801488927192:android:df91e4a2187122c33e1aad",
+        "android_client_info": {
+          "package_name": "com.example.birdworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801488927192-l66i16mqg39qudghha9g699cv65f36th.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByPg_aIzDlsbhNapo4qLRe4-T8546wj_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801488927192-l66i16mqg39qudghha9g699cv65f36th.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
