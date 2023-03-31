@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color md_theme_light_primary = Color(0xFFF2D95C);
+  static const Color md_theme_light_primary = Color(0xFF242A68);
   static const Color md_theme_light_onPrimary = Color(0xFFffffff);
   static const Color md_theme_light_primaryContainer = Color(0xFFFFFDF6);
   static const Color md_theme_light_onPrimaryContainer = Color(0xFF151515);
@@ -26,8 +26,9 @@ class AppColors {
   static const Color md_theme_light_outline = Color(0xFF857371);
   static const Color md_theme_light_inverseOnSurface = Color(0xFFfbeeec);
   static const Color md_theme_light_inverseSurface = Color(0xFF362f2e);
+  static const Color md_theme_light_font = Color.fromARGB(255, 13, 13, 14);
 
-  static const Color md_theme_dark_primary = Color(0xFFFDCD03);
+  static const Color md_theme_dark_primary = Color(0xFF242A68);
   static const Color md_theme_dark_onPrimary = Color(0xFF680003);
   static const Color md_theme_dark_primaryContainer = Color(0xFF930007);
   static const Color md_theme_dark_onPrimaryContainer = Color(0xFFFFFDF6);
@@ -43,7 +44,7 @@ class AppColors {
   static const Color md_theme_dark_errorContainer = Color(0xFF930006);
   static const Color md_theme_dark_onError = Color(0xFF680003);
   static const Color md_theme_dark_onErrorContainer = Color(0xFFFFFDF6);
-  static const Color md_theme_dark_background = Color(0xFF1f1f1f);
+  static const Color md_theme_dark_background = Color.fromARGB(255, 31, 31, 31);
   static const Color md_theme_dark_onBackground = Color(0xFFede0de);
   static const Color md_theme_dark_surface = Color(0xFF211a19);
   static const Color md_theme_dark_onSurface = Color(0xFF1f1f1f);
@@ -52,6 +53,7 @@ class AppColors {
   static const Color md_theme_dark_outline = Color(0xFFa08c8a);
   static const Color md_theme_dark_inverseOnSurface = Color(0xFF211a19);
   static const Color md_theme_dark_inverseSurface = Color(0xFFede0de);
+  static const Color md_theme_dark_font = Color.fromARGB(255, 13, 13, 14);
 
   static const Color red = Color(0xFFFF0000);
   static const Color white = Color(0xFFffffff);
@@ -66,6 +68,19 @@ class AppColors {
   static const Color completed = Color(0xFF0B6623);
   static const Color canceled = Color(0xFFC21807);
   static Color transyellow = const Color(0xFFFDCD03).withOpacity(0.3);
+
+  static Color primary(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? md_theme_light_primary
+        : md_theme_dark_primary;
+  }
+
+  static Color fontcolor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? md_theme_light_font
+        : md_theme_dark_font;
+  }
+
   static Color primaryContainer(BuildContext context) {
     return Theme.of(context).brightness == Brightness.light
         ? md_theme_light_primaryContainer

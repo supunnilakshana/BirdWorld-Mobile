@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static ThemeData get theme {
-    return ThemeData.from(colorScheme: _darkColorScheme).copyWith(
+    return ThemeData.from(colorScheme: _lightColorScheme).copyWith(
         textTheme: GoogleFonts.robotoTextTheme(),
         inputDecorationTheme: _inputDecorationTheme,
         elevatedButtonTheme: _elevatedButtonThemeData,
