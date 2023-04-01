@@ -1,9 +1,10 @@
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PrimaryPasswordformfiled extends StatefulWidget {
   final TextInputType keybordtype;
-  final IconData iconData;
+
   final int maxLine;
   final String hintText;
   final TextEditingController controller;
@@ -15,7 +16,6 @@ class PrimaryPasswordformfiled extends StatefulWidget {
     required this.controller,
     this.keybordtype = TextInputType.text,
     this.maxLine = 1,
-    required this.iconData,
     required this.onchange,
     required this.valid,
   }) : super(key: key);
@@ -34,15 +34,15 @@ class _PrimaryPasswordformfiledState extends State<PrimaryPasswordformfiled> {
       onChanged: widget.onchange,
       controller: widget.controller,
       validator: widget.valid,
-      obscureText: true,
+      obscureText: isHidepassword,
       maxLines: widget.maxLine,
-      cursorColor: AppColors.md_theme_light_primary,
+      cursorColor: AppColors.md_theme_light_font,
       keyboardType: widget.keybordtype,
       decoration: InputDecoration(
         suffixIcon: InkWell(
             onTap: _viewPassword,
-            child: const Icon(
-              Icons.visibility,
+            child: Icon(
+              isHidepassword ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye,
               color: AppColors.md_theme_light_primary,
             )),
       ).applyDefaults(themeData.inputDecorationTheme).copyWith(

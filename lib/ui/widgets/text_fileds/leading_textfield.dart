@@ -48,7 +48,7 @@ class _LeadingtextformfiledState extends State<Leadingtextformfiled> {
       controller: widget.controller,
       validator: widget.valid,
       maxLines: widget.maxLine,
-      cursorColor: AppColors.md_theme_light_primary,
+      cursorColor: AppColors.md_theme_light_font,
       keyboardType: widget.keybordtype,
       decoration: InputDecoration(
         // suffixIcon: widget.isSuffex

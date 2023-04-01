@@ -61,9 +61,9 @@ class AppTheme {
   static final ElevatedButtonThemeData _elevatedButtonThemeData =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.md_theme_light_background,
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: AppColors.appPrimary,
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
     ),
   );
 

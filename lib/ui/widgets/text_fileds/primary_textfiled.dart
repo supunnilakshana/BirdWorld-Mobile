@@ -33,7 +33,7 @@ class Primarytextformfiled extends StatelessWidget {
       controller: controller,
       validator: valid,
       maxLines: maxLine,
-      cursorColor: AppColors.md_theme_light_primary,
+      cursorColor: AppColors.md_theme_light_font,
       keyboardType: keybordtype,
       decoration: const InputDecoration()
           .applyDefaults(themeData.inputDecorationTheme)
