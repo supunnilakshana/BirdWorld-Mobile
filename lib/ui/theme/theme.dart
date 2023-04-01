@@ -45,17 +45,23 @@ class AppTheme {
 
   static final InputDecorationTheme _inputDecorationTheme =
       InputDecorationTheme(
-          border: InputBorder.none,
+          filled: true,
+          border: AppStyle.textfiledBorder(),
+          enabledBorder: AppStyle.textfiledBorder(),
+          errorBorder: AppStyle.textfiledBorder(),
+          focusedErrorBorder: AppStyle.textfiledBorder(),
+          focusedBorder: AppStyle.textfiledBorder(),
+          disabledBorder: AppStyle.textfiledBorder(),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           isDense: true,
           hintStyle: AppStyle.fieldText,
-          fillColor: AppColors.white);
+          fillColor: AppColors.light_gray);
 
   static final ElevatedButtonThemeData _elevatedButtonThemeData =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.md_theme_dark_primary,
+      backgroundColor: AppColors.md_theme_light_background,
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),

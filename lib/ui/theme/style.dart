@@ -1,3 +1,4 @@
+import 'package:birdworld/ui/theme/color.dart';
 import 'package:flutter/material.dart';
 
 class AppStyle {
@@ -319,4 +320,8 @@ class AppStyle {
         color: Colors.black,
         fontWeight: FontWeight.w500,
       );
+
+  static OutlineInputBorder textfiledBorder(
+          {Color color = AppColors.white_gray, double width = 1.0}) =>
+      OutlineInputBorder(borderSide: BorderSide(color: color, width: width));
 }

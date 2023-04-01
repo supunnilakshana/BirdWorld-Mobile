@@ -17,7 +17,8 @@ class AppColors {
   static const Color md_theme_light_errorContainer = Color(0xFFFFFDF6);
   static const Color md_theme_light_onError = Color(0xFFffffff);
   static const Color md_theme_light_onErrorContainer = Color(0xFF410001);
-  static const Color md_theme_light_background = Color(0xFFFFFDF6);
+  static const Color md_theme_light_background =
+      Color.fromARGB(255, 255, 255, 255);
   static const Color md_theme_light_onBackground = Color(0xFF211a19);
   static const Color md_theme_light_surface = Color(0xFFFFFDF6);
   static const Color md_theme_light_onSurface = Color(0xFF211a19);
@@ -63,7 +64,9 @@ class AppColors {
   static const Color darkBlue = Color(0xFF054AB1);
   static const Color green = Color(0xFF31AA52);
   static const Color gray = Color(0xFF4E4E4E);
-  static const Color light_gray = Color(0xFF99A1B1);
+  static const Color light_gray = Color(0xFFFCFCFC);
+  static const Color white_gray = Color(0xFFF2F2F2);
+
   static const Color inProgress = Color(0xFFFDA50F);
   static const Color completed = Color(0xFF0B6623);
   static const Color canceled = Color(0xFFC21807);

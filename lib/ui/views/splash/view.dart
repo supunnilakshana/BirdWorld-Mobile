@@ -1,3 +1,5 @@
+import 'package:birdworld/ui/theme/color.dart';
+import 'package:birdworld/ui/theme/style.dart';
 import 'package:birdworld/ui/views/splash/view_model.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +20,13 @@ class SplashView extends StackedView<SplashViewModel> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            TextFormField(
+                decoration: InputDecoration()
+                    .applyDefaults(Theme.of(context).inputDecorationTheme)
+                    .copyWith(
+                      hintText: "GYGgy",
+                    ))
+
             // SizedBox(
             //   width: size.width * 0.8,
             //   // height: size.height * 0.4,
