@@ -316,7 +316,7 @@ class AppStyle {
       fontStyle: FontStyle.italic);
 
   static TextStyle get fieldText => const TextStyle(
-        fontSize: 16,
+        fontSize: 14,
         color: AppColors.md_theme_light_font,
         fontWeight: FontWeight.w500,
       );

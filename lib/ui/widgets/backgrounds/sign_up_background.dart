@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SignInBackground extends StatelessWidget {
+class SignUpBackground extends StatelessWidget {
   final Widget child;
-  const SignInBackground({
+  const SignUpBackground({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -17,12 +17,12 @@ class SignInBackground extends StatelessWidget {
         child,
         Positioned(
           bottom: 0,
-          child: SvgPicture.asset("assets/images/signin_clip1.svg",
+          child: SvgPicture.asset("assets/images/signup_clip2.svg",
               width: size.width),
         ),
         Positioned(
           bottom: 0,
-          child: SvgPicture.asset("assets/images/signin_clip2.svg",
+          child: SvgPicture.asset("assets/images/signup_clip1.svg",
               width: size.width),
         ),
       ],

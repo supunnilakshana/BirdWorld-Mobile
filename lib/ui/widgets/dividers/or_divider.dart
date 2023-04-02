@@ -32,7 +32,7 @@ class OrDivider extends StatelessWidget {
   Expanded buildDivider() {
     return const Expanded(
       child: Divider(
-        color: Color(0xFFD9D9D9),
+        color: Color.fromARGB(255, 240, 241, 242),
         height: 1.5,
       ),
     );

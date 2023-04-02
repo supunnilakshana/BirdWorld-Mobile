@@ -31,8 +31,8 @@ class SignInView extends StackedView<SignInViewModel> {
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Container(
-              width: double.infinity, height: size.height,
-              //  height: ,
+              width: double.infinity,
+              height: size.height,
               color: AppColors.appPrimary,
               child: SignInBackground(
                 child: Column(
@@ -94,7 +94,7 @@ class SignInView extends StackedView<SignInViewModel> {
                                       controller: viewModel.emailcon,
                                       onchange: (value) {},
                                       valid: (value) =>
-                                          ValidatationService.genaralvalid(
+                                          ValidatationService.emailvaild(
                                               value!)),
                                   SizedBox(
                                     height: size.height * 0.04,
@@ -130,27 +130,22 @@ class SignInView extends StackedView<SignInViewModel> {
                                 onpress: () {},
                                 text: "Sign In",
                               ),
-                              //const OrDivider(),
                               const SizedBox(
                                 height: 20,
                               ),
                               AlreadyHaveAnAccountCheck(
                                 login: true,
-                                press: () {},
+                                press: () {
+                                  viewModel.goSignUp();
+                                },
                               ),
-
-                              const SizedBox(
-                                height: 20,
-                              ),
+                              const OrDivider(),
                               GestureDetector(
                                 onTap: () {},
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: SvgPicture.asset(
-                                    'assets/icons/google_icon.svg',
-                                    height: 80,
-                                    width: 80,
-                                  ),
+                                child: SvgPicture.asset(
+                                  'assets/icons/google_icon.svg',
+                                  height: 80,
+                                  width: 80,
                                 ),
                               )
                             ],

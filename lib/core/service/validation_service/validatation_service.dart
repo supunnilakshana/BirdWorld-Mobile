@@ -15,7 +15,16 @@ class ValidatationService {
     return null;
   }
 
-  static String? vaildemail(String email) {
+  static String? confirmPasswordvaild(String value, String password) {
+    if (value.isEmpty || password.isEmpty) {
+      return "Please enter the confirm password";
+    } else if (value != password) {
+      return "Confirm Password is not matched ";
+    }
+    return null;
+  }
+
+  static String? emailvaild(String email) {
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
@@ -27,7 +36,7 @@ class ValidatationService {
     return null;
   }
 
-  static String? vaildmobile(String email) {
+  static String? mobilenumvaild(String email) {
     String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
     bool mobileValid = RegExp(pattern).hasMatch(email);
     if (email.isEmpty) {
