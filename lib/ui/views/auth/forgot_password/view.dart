@@ -2,24 +2,19 @@ import 'package:birdworld/core/service/validation_service/validatation_service.d
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/backgrounds/sign_in_background.dart';
 import 'package:birdworld/ui/widgets/buttons/primary_button.dart';
-import 'package:birdworld/ui/widgets/checkers/already_have_an_account_acheck.dart';
-import 'package:birdworld/ui/widgets/dividers/or_divider.dart';
-import 'package:birdworld/ui/widgets/text_fileds/password_field.dart';
 import 'package:birdworld/ui/widgets/text_fileds/sufex_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stacked/stacked.dart';
-
 import 'view_model.dart';
 
-class SignInView extends StackedView<SignInViewModel> {
-  const SignInView({Key? key}) : super(key: key);
+class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> {
+  const ForgotPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
-      BuildContext context, SignInViewModel viewModel, Widget? child) {
+      BuildContext context, ForgotPasswordViewModel viewModel, Widget? child) {
     final size = MediaQuery.of(context).size;
     final node = FocusScope.of(context);
     final theme = Theme.of(context);
@@ -45,14 +40,14 @@ class SignInView extends StackedView<SignInViewModel> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Hello again ",
+                            "Recover your  ",
                             style: TextStyle(color: Colors.white, fontSize: 30),
                           ),
                           const SizedBox(
                             height: 5,
                           ),
                           const Text(
-                            "Welcome Back",
+                            "Password",
                             style: TextStyle(color: Colors.white, fontSize: 30),
                           ),
                           Row(
@@ -97,32 +92,16 @@ class SignInView extends StackedView<SignInViewModel> {
                                           ValidatationService.emailvaild(
                                               value!)),
                                   SizedBox(
-                                    height: size.height * 0.04,
+                                    height: size.height * 0.02,
                                   ),
-                                  PrimaryPasswordformfiled(
-                                    controller: viewModel.passwordcon,
-                                    onchange: (val) {},
-                                    valid: (val) =>
-                                        ValidatationService.signupPassword(
-                                            val!),
-                                  )
+                                  const Text(
+                                    "*If you have account associate with this email we will send the recover link?",
+                                    style: TextStyle(color: Colors.redAccent),
+                                  ),
                                 ],
                               ),
                               const SizedBox(
                                 height: 20,
-                              ),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: (() {
-                                      viewModel.goForgotPassword();
-                                    }),
-                                    child: const Text(
-                                      "Forgot Password?",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  ),
-                                ],
                               ),
                               const SizedBox(
                                 height: 20,
@@ -130,26 +109,11 @@ class SignInView extends StackedView<SignInViewModel> {
                               Primarybutton(
                                 width: size.width,
                                 onpress: () {},
-                                text: "Sign In",
+                                text: "Send Verification link",
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
-                              AlreadyHaveAnAccountCheck(
-                                login: true,
-                                press: () {
-                                  viewModel.goSignUp();
-                                },
-                              ),
-                              const OrDivider(),
-                              GestureDetector(
-                                onTap: () {},
-                                child: SvgPicture.asset(
-                                  'assets/icons/google_icon.svg',
-                                  height: 80,
-                                  width: 80,
-                                ),
-                              )
                             ],
                           ),
                         ),
@@ -166,8 +130,8 @@ class SignInView extends StackedView<SignInViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => SignInViewModel();
+  viewModelBuilder(BuildContext context) => ForgotPasswordViewModel();
 
   @override
-  void onViewModelReady(SignInViewModel viewModel) => viewModel.init();
+  void onViewModelReady(ForgotPasswordViewModel viewModel) => viewModel.init();
 }

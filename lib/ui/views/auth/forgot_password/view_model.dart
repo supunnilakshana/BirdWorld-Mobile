@@ -4,13 +4,12 @@ import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SignInViewModel extends BaseViewModel {
+class ForgotPasswordViewModel extends BaseViewModel {
   final NavigationService _navigationService = GetIt.I.get();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailcon = TextEditingController();
-  final TextEditingController passwordcon = TextEditingController();
 
-  SignInViewModel();
+  ForgotPasswordViewModel();
 
   goBack() {
     _navigationService.back();
@@ -18,10 +17,6 @@ class SignInViewModel extends BaseViewModel {
 
   goSignUp() {
     _navigationService.navigateTo(Routes.signUpView);
-  }
-
-  goForgotPassword() {
-    _navigationService.navigateTo(Routes.forgotPasswordView);
   }
 
   void init() {}

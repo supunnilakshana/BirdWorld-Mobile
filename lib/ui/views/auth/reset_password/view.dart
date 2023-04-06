@@ -3,23 +3,19 @@ import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/backgrounds/sign_up_background.dart';
 import 'package:birdworld/ui/widgets/buttons/primary_button.dart';
 import 'package:birdworld/ui/widgets/checkers/already_have_an_account_acheck.dart';
-import 'package:birdworld/ui/widgets/dividers/or_divider.dart';
 import 'package:birdworld/ui/widgets/text_fileds/password_field.dart';
-import 'package:birdworld/ui/widgets/text_fileds/sufex_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stacked/stacked.dart';
 
 import 'view_model.dart';
 
-class SignUpView extends StackedView<SignUpViewModel> {
-  const SignUpView({Key? key}) : super(key: key);
+class ResetPasswordView extends StackedView<ResetPasswordViewModel> {
+  const ResetPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
-      BuildContext context, SignUpViewModel viewModel, Widget? child) {
+      BuildContext context, ResetPasswordViewModel viewModel, Widget? child) {
     final size = MediaQuery.of(context).size;
     final node = FocusScope.of(context);
     final theme = Theme.of(context);
@@ -51,7 +47,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
                                 Text(
-                                  "Hello!",
+                                  "Reset",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30),
                                 ),
@@ -59,7 +55,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "Signup to ",
+                                  "Your ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30),
                                 ),
@@ -67,7 +63,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "get strarted",
+                                  "Password",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30),
                                 ),
@@ -109,59 +105,11 @@ class SignUpView extends StackedView<SignUpViewModel> {
                               ),
                               Column(
                                 children: <Widget>[
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: SufexTextformfiled(
-                                            hintText: "First Name",
-                                            iconData: FontAwesomeIcons.user,
-                                            controller: viewModel.firstnamecon,
-                                            onchange: (value) {},
-                                            valid: (value) =>
-                                                ValidatationService
-                                                    .genaralvalid(value!)),
-                                      ),
-                                      SizedBox(
-                                        width: size.width * 0.02,
-                                      ),
-                                      Expanded(
-                                        child: SufexTextformfiled(
-                                            hintText: "Last Name",
-                                            iconData: FontAwesomeIcons.user,
-                                            controller: viewModel.lastnamecon,
-                                            onchange: (value) {},
-                                            valid: (value) =>
-                                                ValidatationService
-                                                    .genaralvalid(value!)),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.03,
-                                  ),
-                                  SufexTextformfiled(
-                                      hintText: "Email",
-                                      iconData: FontAwesomeIcons.envelope,
-                                      controller: viewModel.emailcon,
-                                      onchange: (value) {},
-                                      valid: (value) =>
-                                          ValidatationService.genaralvalid(
-                                              value!)),
-                                  SizedBox(
-                                    height: size.height * 0.03,
-                                  ),
-                                  SufexTextformfiled(
-                                      hintText: "Mobile No",
-                                      iconData: FontAwesomeIcons.mobileScreen,
-                                      controller: viewModel.mobilnumecon,
-                                      onchange: (value) {},
-                                      valid: (value) =>
-                                          ValidatationService.mobilenumvaild(
-                                              value!)),
                                   SizedBox(
                                     height: size.height * 0.03,
                                   ),
                                   PrimaryPasswordformfiled(
+                                    hintText: "New Password",
                                     controller: viewModel.passwordcon,
                                     onchange: (val) {},
                                     valid: (val) =>
@@ -172,7 +120,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                                     height: size.height * 0.03,
                                   ),
                                   PrimaryPasswordformfiled(
-                                    hintText: "Confirm Password",
+                                    hintText: "Confirm New Password",
                                     controller: viewModel.passwordcon,
                                     onchange: (val) {},
                                     valid: (val) => ValidatationService
@@ -187,7 +135,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                               Primarybutton(
                                 width: size.width,
                                 onpress: () {},
-                                text: "Sign Up",
+                                text: "Reset ",
                               ),
                               const SizedBox(
                                 height: 20,
@@ -214,8 +162,8 @@ class SignUpView extends StackedView<SignUpViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => SignUpViewModel();
+  viewModelBuilder(BuildContext context) => ResetPasswordViewModel();
 
   @override
-  void onViewModelReady(SignUpViewModel viewModel) => viewModel.init();
+  void onViewModelReady(ResetPasswordViewModel viewModel) => viewModel.init();
 }

@@ -26,11 +26,11 @@ class SplashView extends StackedView<SplashViewModel> {
               //  child: SvgPicture.asset("assets/images/podibiz_logo.svg")
               child: Image.asset("assets/images/tewmplogo.png"),
             ),
-            const LinearProgressIndicator(
-              backgroundColor: AppColors.appPrimary,
-              valueColor: AlwaysStoppedAnimation(AppColors.darkBlue),
-              minHeight: 5,
-            ),
+            // const LinearProgressIndicator(
+            //   backgroundColor: AppColors.appPrimary,
+            //   valueColor: AlwaysStoppedAnimation(AppColors.darkBlue),
+            //   minHeight: 5,
+            // ),
           ],
         ),
       ),
