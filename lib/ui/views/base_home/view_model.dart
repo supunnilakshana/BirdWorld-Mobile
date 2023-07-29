@@ -1,3 +1,4 @@
+import 'package:birdworld/ui/views/base_home/commnunity/view.dart';
 import 'package:birdworld/ui/views/base_home/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -14,7 +15,7 @@ class BaseHomeViewModel extends BaseViewModel {
   int currentIndex = 0;
   final List<Widget> screens = [
     const HomeView(),
-    Container(),
+    const CommunityView(),
     Container(),
     Container()
   ];

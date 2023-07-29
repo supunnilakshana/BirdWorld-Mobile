@@ -33,7 +33,11 @@ dependencies:
   flashy_tab_bar2: ^0.0.6
   animated_text_kit: ^4.2.2
   file_picker: ^5.3.0
+  readmore: ^2.2.0
+  cached_network_image: ^3.2.3
+  carousel_slider: ^4.2.1
   
+
 
 
 

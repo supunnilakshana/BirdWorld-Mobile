@@ -55,49 +55,23 @@ class BaseHomeView extends StackedView<BaseHomeViewModel> {
     ];
 
     return Scaffold(
-        bottomNavigationBar: FlashyTabBar(
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+        child: FlashyTabBar(
           onItemSelected: (value) {
             viewModel.changeindex(value);
           },
           items: items,
-          backgroundColor: Colors.white,
+          showElevation: true,
+          backgroundColor: AppColors.white_gray,
           selectedIndex: viewModel.currentIndex,
         ),
-        body: viewModel.screens[viewModel.currentIndex]);
-    // return Scaffold(
-    //   body: Stack(
-    //     children: [
-    //       viewModel.screens[viewModel.currentIndex],
-    //       Align(
-    //         alignment: Alignment.bottomCenter,
-    //         child: BottomNavigationBar(
-    //           selectedItemColor: AppColors.appPrimary,
-    //           selectedIconTheme:
-    //               const IconThemeData(color: AppColors.appPrimary),
-    //           type: BottomNavigationBarType.fixed,
-    //           backgroundColor: AppColors.md_theme_dark_background,
-    //           currentIndex: viewModel.currentIndex,
-    //           onTap: (int index) {
-    //             viewModel.changeindex(index);
-    //           },
-    //           items: const [
-    //             BottomNavigationBarItem(
-    //               icon: FaIcon(FontAwesomeIcons.house),
-    //               label: 'Home',
-    //             ),
-    //             BottomNavigationBarItem(
-    //               icon: FaIcon(FontAwesomeIcons.moneyBillTransfer),
-    //               label: 'Transacation',
-    //             ),
-    //             BottomNavigationBarItem(
-    //               icon: FaIcon(FontAwesomeIcons.gear),
-    //               label: 'Profile Setting',
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ],
-    //   ),
+      ),
+      body: viewModel.screens[viewModel.currentIndex],
+    );
     // );
   }
 

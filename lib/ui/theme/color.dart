@@ -67,10 +67,10 @@ class AppColors {
   static const Color gray = Color(0xFF4E4E4E);
   static const Color light_gray = Color(0xFFFCFCFC);
   static const Color white_gray = Color(0xFFF2F2F2);
-
+  static const Color skyBlue = Color(0xFF2096F9);
   static const Color inProgress = Color(0xFFFDA50F);
   static const Color completed = Color(0xFF0B6623);
-  static const Color canceled = Color(0xFFC21807);
+  static const Color canceled = Color.fromARGB(255, 171, 24, 10);
   static Color transyellow = const Color(0xFFFDCD03).withOpacity(0.3);
 
   static Color primary(BuildContext context) {
