@@ -24,5 +24,9 @@ class SignInViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.forgotPasswordView);
   }
 
+  signIn() {
+    _navigationService.replaceWithBaseHomeView(initIndex: 1);
+  }
+
   void init() {}
 }

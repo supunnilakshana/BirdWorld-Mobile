@@ -129,7 +129,9 @@ class SignInView extends StackedView<SignInViewModel> {
                               ),
                               Primarybutton(
                                 width: size.width,
-                                onpress: () {},
+                                onpress: () {
+                                  viewModel.signIn();
+                                },
                                 text: "Sign In",
                               ),
                               const SizedBox(

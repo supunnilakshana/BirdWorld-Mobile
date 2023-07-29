@@ -9,13 +9,15 @@ import 'package:birdworld/ui/views/auth/forgot_password/view.dart' as _i5;
 import 'package:birdworld/ui/views/auth/reset_password/view.dart' as _i6;
 import 'package:birdworld/ui/views/auth/sign_in/view.dart' as _i3;
 import 'package:birdworld/ui/views/auth/sign_up/view.dart' as _i4;
+import 'package:birdworld/ui/views/base_home/view.dart' as _i7;
 import 'package:birdworld/ui/views/splash/view.dart' as _i2;
+import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i7;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
-  static const splashView = '/splash-view';
+  static const splashView = '/';
 
   static const signInView = '/sign-in-view';
 
@@ -23,7 +25,9 @@ class Routes {
 
   static const forgotPasswordView = '/forgot-password-view';
 
-  static const resetPasswordView = '/';
+  static const resetPasswordView = '/reset-password-view';
+
+  static const baseHomeView = '/base-home-view';
 
   static const all = <String>{
     splashView,
@@ -31,6 +35,7 @@ class Routes {
     signUpView,
     forgotPasswordView,
     resetPasswordView,
+    baseHomeView,
   };
 }
 
@@ -55,6 +60,10 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.resetPasswordView,
       page: _i6.ResetPasswordView,
+    ),
+    _i1.RouteDef(
+      Routes.baseHomeView,
+      page: _i7.BaseHomeView,
     ),
   ];
 
@@ -89,6 +98,16 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
+    _i7.BaseHomeView: (data) {
+      final args = data.getArgs<BaseHomeViewArguments>(
+        orElse: () => const BaseHomeViewArguments(),
+      );
+      return _i1.buildAdaptivePageRoute<dynamic>(
+        builder: (context) =>
+            _i7.BaseHomeView(key: args.key, initIndex: args.initIndex),
+        settings: data,
+      );
+    },
   };
 
   @override
@@ -97,7 +116,23 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i7.NavigationService {
+class BaseHomeViewArguments {
+  const BaseHomeViewArguments({
+    this.key,
+    this.initIndex = 0,
+  });
+
+  final _i8.Key? key;
+
+  final int initIndex;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "initIndex": "$initIndex"}';
+  }
+}
+
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToSplashView([
     int? routerId,
     bool preventDuplicates = true,
@@ -168,6 +203,23 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToBaseHomeView({
+    _i8.Key? key,
+    int initIndex = 0,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.baseHomeView,
+        arguments: BaseHomeViewArguments(key: key, initIndex: initIndex),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithSplashView([
     int? routerId,
     bool preventDuplicates = true,
@@ -232,6 +284,23 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.resetPasswordView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithBaseHomeView({
+    _i8.Key? key,
+    int initIndex = 0,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.baseHomeView,
+        arguments: BaseHomeViewArguments(key: key, initIndex: initIndex),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
