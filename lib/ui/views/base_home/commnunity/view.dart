@@ -19,11 +19,15 @@ class CommunityView extends StackedView<CommunityViewModel> {
   Widget builder(
       BuildContext context, CommunityViewModel viewModel, Widget? child) {
     final size = MediaQuery.of(context).size;
-
+    final post = PostItem(
+      commentfun: () {
+        viewModel.openCommentBottom(context);
+      },
+    );
     return Scaffold(
       body: ListView(
         // mainAxisAlignment: MainAxisAlignment.center,
-        children: [PostItem(), PostItem(), PostItem()],
+        children: [post, post, post],
       ),
     );
   }

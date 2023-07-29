@@ -1,18 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-// ignore: depend_on_referenced_packages
-
-class CartBottomSheetViewModel extends BaseViewModel {
+class CommentBottomSheetViewModel extends BaseViewModel {
   final NavigationService _navigationService = GetIt.I.get();
 
-  CartBottomSheetViewModel();
+  CommentBottomSheetViewModel();
   void init() {}
 
   goBack() {
-    _navigationService.popRepeated(2);
+    _navigationService.popRepeated(1);
   }
 
   closeBottomSheet() {

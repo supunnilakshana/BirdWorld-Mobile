@@ -5,8 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 
 class PostItem extends StatefulWidget {
+  final Function() commentfun;
   const PostItem({
     Key? key,
+    required this.commentfun,
   }) : super(key: key);
 
   @override
@@ -153,7 +155,9 @@ class PostItemState extends State<PostItem> {
                           Padding(
                             padding: const EdgeInsets.only(right: 15),
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                widget.commentfun();
+                              },
                               child: Icon(FontAwesomeIcons.comment,
                                   color: Colors.black.withOpacity(0.9)),
                             ),

@@ -1,3 +1,4 @@
+import 'package:birdworld/core/service/bottom_sheet_service/bottom_sheet_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -11,6 +12,10 @@ class CommunityViewModel extends BaseViewModel {
 
   goBack() {
     _navigationService.back();
+  }
+
+  openCommentBottom(BuildContext context) {
+    AppBottomSheetService().showCommentBottomSheet(context);
   }
 
   init() {}
