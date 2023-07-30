@@ -14,8 +14,13 @@ class CommunityViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
+  final TextEditingController postcon = TextEditingController();
   openCommentBottom(BuildContext context) {
     AppBottomSheetService().showCommentBottomSheet(context);
+  }
+
+  openCreatePosttBottom(BuildContext context) {
+    AppBottomSheetService().showCreatePostBottomSheet(context);
   }
 
   init() {}

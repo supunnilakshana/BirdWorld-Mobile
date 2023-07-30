@@ -6,7 +6,7 @@ class Primarytextformfiled extends StatelessWidget {
   final int maxLine;
 
   final String hintText;
-  final String formControlName;
+
   final Color background;
   final EdgeInsetsGeometry padding;
   final TextEditingController controller;
@@ -18,7 +18,6 @@ class Primarytextformfiled extends StatelessWidget {
     required this.controller,
     this.keybordtype = TextInputType.text,
     this.maxLine = 1,
-    required this.formControlName,
     this.background = AppColors.light_gray,
     this.padding = const EdgeInsets.all(10),
     required this.onchange,

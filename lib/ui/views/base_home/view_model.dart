@@ -1,5 +1,7 @@
+import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/views/base_home/commnunity/view.dart';
 import 'package:birdworld/ui/views/base_home/home/view.dart';
+import 'package:birdworld/ui/views/base_home/profile_setting/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,8 +18,13 @@ class BaseHomeViewModel extends BaseViewModel {
   final List<Widget> screens = [
     const HomeView(),
     const CommunityView(),
-    Container(),
-    Container()
+    const Center(
+      child: Text(
+        "Development will be started in next sprint",
+        style: TextStyle(color: AppColors.appPrimary),
+      ),
+    ),
+    const ProfileSettingView()
   ];
 
   bool isSelected = false;

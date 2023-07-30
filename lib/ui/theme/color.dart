@@ -55,14 +55,14 @@ class AppColors {
   static const Color md_theme_dark_inverseOnSurface = Color(0xFF211a19);
   static const Color md_theme_dark_inverseSurface = Color(0xFFede0de);
   static const Color md_theme_dark_font = Color.fromARGB(255, 13, 13, 14);
-
+  static const Color darkblack = Color.fromARGB(255, 13, 13, 14);
   static const Color red = Color(0xFFFF0000);
   static const Color white = Color(0xFFffffff);
   static const Color yellow = Color(0xFFFDCD03);
   static const Color maroon = Color(0xFF820606);
   static const Color blue = Color.fromARGB(255, 12, 77, 174);
   static const Color appPrimary = Color(0xFF242A68);
-  static const Color darkBlue = Color.fromARGB(255, 52, 59, 168);
+  static const Color darkBlue = Color.fromARGB(255, 3, 6, 40);
   static const Color green = Color(0xFF31AA52);
   static const Color gray = Color(0xFF4E4E4E);
   static const Color light_gray = Color(0xFFFCFCFC);

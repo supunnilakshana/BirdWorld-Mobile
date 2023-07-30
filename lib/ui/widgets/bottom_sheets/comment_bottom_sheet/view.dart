@@ -32,6 +32,7 @@ class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Scaffold(
+            backgroundColor: AppColors.white,
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(size.height * 0.1),
                 child: Column(
@@ -62,7 +63,7 @@ class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
                       ],
                     ),
                     const Divider(
-                      color: Colors.black54,
+                      color: Color.fromARGB(255, 194, 191, 191),
                       height: 20,
                       thickness: 1.5,
                     ),
@@ -70,24 +71,34 @@ class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
                 )),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Commenttextformfiled(
-                  hintText: "Write a comment for  Poreen",
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      radius: size.width * 0.05,
-                      backgroundImage: const NetworkImage(
-                          "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600"),
-                    ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Divider(
+                    color: AppColors.light_gray,
+                    height: 20,
+                    thickness: 2,
                   ),
-                  maxLine: null,
-                  controller: viewModel.commentcon,
-                  onchange: (val) {},
-                  suffex: const Icon(FontAwesomeIcons.solidPaperPlane,
-                      color: AppColors.appPrimary),
-                  valid: (val) {
-                    return null;
-                  }),
+                  Commenttextformfiled(
+                      hintText: "Write a comment for  Poreen",
+                      leading: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: size.width * 0.05,
+                          backgroundImage: const NetworkImage(
+                              "https://previews.123rf.com/images/realityimages/realityimages1803/realityimages180300953/97894659-indian-boy-posing-with-motorbike-at-pune-maharashtra.jpg"),
+                        ),
+                      ),
+                      maxLine: null,
+                      controller: viewModel.commentcon,
+                      onchange: (val) {},
+                      suffex: const Icon(FontAwesomeIcons.solidPaperPlane,
+                          color: AppColors.appPrimary),
+                      valid: (val) {
+                        return null;
+                      }),
+                ],
+              ),
             ),
             body: SingleChildScrollView(
               reverse: true,
