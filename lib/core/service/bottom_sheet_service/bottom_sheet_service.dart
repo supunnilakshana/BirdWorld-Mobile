@@ -8,7 +8,7 @@ class AppBottomSheetService {
 
     showModalBottomSheet(
       constraints: BoxConstraints(
-        maxHeight: size.height * 0.8,
+        maxHeight: size.height * 0.85,
       ),
       enableDrag: true,
       isDismissible: false,
