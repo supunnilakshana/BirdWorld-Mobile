@@ -7,6 +7,7 @@ class PickedImage extends StatelessWidget {
   final double height;
   final double width;
   final String path;
+  final double iconsize;
   final Function() clearfun;
   const PickedImage({
     Key? key,
@@ -14,6 +15,7 @@ class PickedImage extends StatelessWidget {
     required this.clearfun,
     required this.height,
     required this.width,
+    this.iconsize = 20,
   }) : super(key: key);
 
   @override
@@ -35,8 +37,8 @@ class PickedImage extends StatelessWidget {
               child: IconButton(
                   icon: Icon(
                     Icons.cancel,
-                    color: AppColors.darkBlue.withOpacity(0.7),
-                    size: 20,
+                    color: AppColors.darkBlue.withOpacity(0.9),
+                    size: iconsize,
                   ),
                   onPressed: () {
                     clearfun();

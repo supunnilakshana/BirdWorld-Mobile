@@ -10,8 +10,8 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends BaseViewModel {
   final NavigationService _navigationService = GetIt.I.get();
   final ImagePicker _picker = ImagePicker();
-
   XFile? image;
+  bool isimgload = false;
   // final UserDataProvider userDataProvider;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   HomeViewModel();
@@ -35,6 +35,34 @@ class HomeViewModel extends BaseViewModel {
     } else {
       return Future<bool>.value(true);
     }
+  }
+
+  Future<void> selectimgFromGallery() async {
+    XFile? selectedimage =
+        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+    if (selectedimage != null) {
+      image = selectedimage;
+      isimgload = true;
+    }
+    notifyListeners();
+  }
+
+  Future<void> selectimgFromCamera() async {
+    XFile? selectedimage =
+        await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+
+    if (selectedimage != null) {
+      image = selectedimage;
+      isimgload = true;
+    }
+    notifyListeners();
+  }
+
+  clearImage() {
+    isimgload = false;
+    image = null;
+    notifyListeners();
   }
 
   void init() {}

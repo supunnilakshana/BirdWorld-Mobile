@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/dividers/or_divider.dart';
+import 'package:birdworld/ui/widgets/image_widgets/picked_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,171 +23,174 @@ class HomeView extends StackedView<HomeViewModel> {
         onWillPop: () {
           return viewModel.onBack();
         },
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Container(
-            color: AppColors.skyBlue,
-            width: size.width,
-            height: size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  flex: 10,
-                  child: viewModel.image != null
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(size.width * 0.05),
-                              child: Image.file(
-                                File(viewModel.image!.path),
-                                height: size.height * 0.48,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        )
-                      : Container(
-                          height: size.height * 0.6,
-                          width: size.width,
-                          padding: EdgeInsets.zero,
-                          decoration:
-                              const BoxDecoration(color: AppColors.skyBlue),
-                          child: Lottie.asset(
-                            "assets/animations/home_animi2.json",
-                          ),
-                        ),
-                ),
-                _buildMidContainerWithButton(size.height * 0.065),
-                Flexible(
-                  flex: 9,
-                  child: Container(
-                    width: size.width,
-                    //  height: size.height * 0.4,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const OrDivider(),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: size.height * 0.008,
-                              left: size.width * 0.075,
-                              right: size.width * 0.075),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: const Offset(0, 1),
-                                    blurRadius: 3,
-                                    color: Colors.blueGrey.withOpacity(0.3),
-                                  ),
-                                ],
-                              ),
-                              child: ListTile(
-                                leading: Icon(
-                                  FontAwesomeIcons.photoFilm,
-                                  size: size.width * 0.07,
-                                  color: AppColors.appPrimary.withOpacity(0.9),
-                                ),
-                                title: Text(
-                                  "Select the Image from Gallery",
-                                  style: TextStyle(
-                                      fontSize: size.width * 0.043,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.appPrimary
-                                          .withOpacity(0.8)),
-                                ),
-                              ),
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: Container(
+              color: viewModel.isimgload ? AppColors.blue : AppColors.skyBlue,
+              width: size.width,
+              height: size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    flex: 10,
+                    child: viewModel.isimgload
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              PickedImage(
+                                  path: viewModel.image!.path,
+                                  clearfun: () => viewModel.clearImage(),
+                                  height: size.height * 0.38,
+                                  iconsize: 30,
+                                  width: size.width * 0.8),
+                            ],
+                          )
+                        : Container(
+                            height: size.height * 0.6,
+                            width: size.width,
+                            padding: EdgeInsets.zero,
+                            decoration:
+                                const BoxDecoration(color: AppColors.skyBlue),
+                            child: Lottie.asset(
+                              "assets/animations/home_animi2.json",
                             ),
                           ),
-                        ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: RichText(
-                        //     textAlign: TextAlign.center,
-                        //     text: TextSpan(
-                        //       style: TextStyle(
-                        //           color: AppColors.blue.withOpacity(0.9),
-                        //           fontSize: size.width * 0.048),
-                        //       children: <TextSpan>[
-                        //         TextSpan(
-                        //             text: 'Select and Upload Bird Image to\n',
-                        //             style: TextStyle()),
-                        //         TextSpan(
-                        //             text: ' Identitfy',
-                        //             style: TextStyle(
-                        //                 color: AppColors.blue.withOpacity(0.9),
-                        //                 fontSize: size.width * 0.055,
-                        //                 fontWeight: FontWeight.w600)),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.008,
-                                  left: size.width * 0.04,
-                                  right: size.width * 0.04),
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: AppColors.darkBlue,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        offset: const Offset(0, 1),
-                                        blurRadius: 3,
-                                        color: Colors.blueGrey.withOpacity(0.3),
-                                      ),
-                                    ],
-                                  ),
-                                  child: ListTile(
-                                    leading: Icon(
-                                      FontAwesomeIcons.upload,
-                                      size: size.width * 0.07,
-                                      color: AppColors.white.withOpacity(0.9),
-                                    ),
-                                    title: Text(
-                                      "Upload Image to Identify",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: size.width * 0.043,
-                                          fontWeight: FontWeight.w600,
-                                          color:
-                                              AppColors.white.withOpacity(0.9)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
                   ),
-                )
-              ],
+                  _buildMidContainerWithButton(size.height * 0.065, viewModel),
+                  Flexible(
+                    flex: 9,
+                    child: Container(
+                      width: size.width,
+                      //  height: size.height * 0.4,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const OrDivider(),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: size.height * 0.008,
+                                left: size.width * 0.075,
+                                right: size.width * 0.075),
+                            child: GestureDetector(
+                              onTap: () {
+                                viewModel.selectimgFromGallery();
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: const Offset(0, 1),
+                                      blurRadius: 3,
+                                      color: Colors.blueGrey.withOpacity(0.3),
+                                    ),
+                                  ],
+                                ),
+                                child: ListTile(
+                                  leading: Icon(
+                                    FontAwesomeIcons.photoFilm,
+                                    size: size.width * 0.07,
+                                    color:
+                                        AppColors.appPrimary.withOpacity(0.9),
+                                  ),
+                                  title: Text(
+                                    "Select the Image from Gallery",
+                                    style: TextStyle(
+                                        fontSize: size.width * 0.043,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.appPrimary
+                                            .withOpacity(0.8)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: RichText(
+                          //     textAlign: TextAlign.center,
+                          //     text: TextSpan(
+                          //       style: TextStyle(
+                          //           color: AppColors.blue.withOpacity(0.9),
+                          //           fontSize: size.width * 0.048),
+                          //       children: <TextSpan>[
+                          //         TextSpan(
+                          //             text: 'Select and Upload Bird Image to\n',
+                          //             style: TextStyle()),
+                          //         TextSpan(
+                          //             text: ' Identitfy',
+                          //             style: TextStyle(
+                          //                 color: AppColors.blue.withOpacity(0.9),
+                          //                 fontSize: size.width * 0.055,
+                          //                 fontWeight: FontWeight.w600)),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.008,
+                                    left: size.width * 0.04,
+                                    right: size.width * 0.04),
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColors.darkBlue,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          offset: const Offset(0, 1),
+                                          blurRadius: 3,
+                                          color:
+                                              Colors.blueGrey.withOpacity(0.3),
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      leading: Icon(
+                                        FontAwesomeIcons.upload,
+                                        size: size.width * 0.07,
+                                        color: AppColors.white.withOpacity(0.9),
+                                      ),
+                                      title: Text(
+                                        "Upload Image to Identify",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: size.width * 0.043,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.white
+                                                .withOpacity(0.9)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));
   }
 
-  Widget _buildMidContainerWithButton(double height) {
+  Widget _buildMidContainerWithButton(double height, HomeViewModel viewmodel) {
     final buttonHeight = height;
     return Stack(
       children: [
@@ -204,7 +208,7 @@ class HomeView extends StackedView<HomeViewModel> {
           child: Center(
             child: GestureDetector(
               onTap: () {
-                //  _imgFromCamera();
+                viewmodel.selectimgFromCamera();
               },
               child: Container(
                 height: buttonHeight,
