@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/dividers/or_divider.dart';
 import 'package:birdworld/ui/widgets/image_widgets/picked_image.dart';
@@ -8,7 +5,6 @@ import 'package:birdworld/ui/widgets/image_widgets/picked_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'view_model.dart';
 

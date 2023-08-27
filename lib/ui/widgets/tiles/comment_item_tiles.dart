@@ -26,7 +26,7 @@ class _CommentItemTileState extends State<CommentItemTile> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Pomsarii de silva",
+            "namsarii de silva",
             style: TextStyle(color: Colors.black.withOpacity(0.8)),
           ),
         ],
@@ -34,7 +34,7 @@ class _CommentItemTileState extends State<CommentItemTile> {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Good morning poreen !!!",
+          Text("Good morning  broh !!!",
               style: TextStyle(
                 color: Colors.black.withOpacity(0.8),
               )),

@@ -8,7 +8,7 @@ class CommentBottomSheetViewModel extends BaseViewModel {
   final TextEditingController commentcon = TextEditingController();
   CommentBottomSheetViewModel();
 
-  bool noComment = true;
+  bool noComment = false;
   void init() {}
 
   goBack() {
