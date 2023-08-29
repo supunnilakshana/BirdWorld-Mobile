@@ -96,14 +96,14 @@ class ApiClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-    bool? isTokenNeeded,
-    bool? isCustomHeaders,
+    bool isTokenNeeded = false,
+    bool isCustomHeaders = false,
   }) async {
     try {
       var response = await _dio.get(path,
           queryParameters: queryParameters,
           options: await _defaultOptions(
-              options: options, isTokenNeeded!, isCustomHeaders!),
+              options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
       return _validateResponse(response);
@@ -154,15 +154,15 @@ class ApiClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-    bool? isTokenNeeded,
-    bool? isCustomHeaders,
+    bool isTokenNeeded = false,
+    bool isCustomHeaders = false,
   }) async {
     try {
       var response = await _dio.put(path,
           data: data,
           queryParameters: queryParameters,
           options: await _defaultOptions(
-              options: options, isTokenNeeded!, isCustomHeaders!),
+              options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
 
@@ -178,19 +178,21 @@ class ApiClient {
     }
   }
 
-  Future<T?> delete<T>(String path,
-      {Map<String, dynamic>? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      bool? isTokenNeeded,
-      bool? isCustomHeaders}) async {
+  Future<T?> delete<T>(
+    String path, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    bool isTokenNeeded = false,
+    bool isCustomHeaders = false,
+  }) async {
     try {
       var response = await _dio.delete(path,
           data: data,
           queryParameters: queryParameters,
           options: await _defaultOptions(
-              options: options, isTokenNeeded!, isCustomHeaders!),
+              options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken);
 
       return _validateResponse(response);
