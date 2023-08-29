@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:birdworld/core/config/app/app_config.dart';
+import 'package:birdworld/core/models/login_response.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
 import 'package:birdworld/core/service/storage_services/secure_storage_service.dart';
 
@@ -63,6 +64,24 @@ class ApiClient {
     );
   }
 
+  T getEntity<T>(_json) {
+    var res;
+
+    if (_json is List) {
+    } else {
+      switch (T) {
+        case LoginResponse:
+          res = LoginResponse.fromMap(_json);
+          break;
+
+        // case :
+        //   res = AccountInfo.fromMap(_json);
+        //   break;
+      }
+    }
+    return res;
+  }
+
   String getToken(token) {
     return (token ?? '').toString().replaceFirst('Bearer ', '');
   }
@@ -83,8 +102,8 @@ class ApiClient {
     try {
       var response = await _dio.get(path,
           queryParameters: queryParameters,
-          // options: await _defaultOptions(
-          //     options: options, isTokenNeeded!, isCustomHeaders!),
+          options: await _defaultOptions(
+              options: options, isTokenNeeded!, isCustomHeaders!),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
       return _validateResponse(response);
@@ -105,17 +124,18 @@ class ApiClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-    bool? isTokenNeeded,
-    bool? isCustomHeaders,
+    bool isTokenNeeded = false,
+    bool isCustomHeaders = false,
   }) async {
     try {
       var response = await _dio.post(path,
           data: data,
           queryParameters: queryParameters,
           options: await _defaultOptions(
-              options: options, isTokenNeeded!, isCustomHeaders!),
+              options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
+      // print(response);
       return _validateResponse(response);
     } on DioError catch (e) {
       //_errorInterceptorHandler.onError(e, errorInterceptorHandler);
@@ -328,7 +348,6 @@ class ApiClient {
             error: true);
       } else { */
       // if (T == LoginResponse) {
-      //   // re-build the response with both response header and response body
       //   Map<String, dynamic> newResponse = {
       //     ...response.data,
       //     'token':
@@ -339,9 +358,9 @@ class ApiClient {
       //         response.headers.value('X-Version-Status'),
       //   };
 
-      //   return newResponse;
+      //   return getEntity<T>(newResponse);
       // }
-      return response.data;
+      return getEntity<T>(response.data);
       /* } */
     } on Exception catch (e) {
       print(e);
