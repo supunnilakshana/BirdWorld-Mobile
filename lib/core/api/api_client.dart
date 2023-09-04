@@ -106,6 +106,7 @@ class ApiClient {
               options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
+
       return _validateResponse(response);
     } on DioError catch (e) {
       if (e.response!.statusCode == 400) {
@@ -135,7 +136,7 @@ class ApiClient {
               options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
-      // print(response);
+      print(response);
       return _validateResponse(response);
     } on DioError catch (e) {
       //_errorInterceptorHandler.onError(e, errorInterceptorHandler);
@@ -326,7 +327,7 @@ class ApiClient {
       String? token = await _secureStoreService.getToken;
       return Options(
         headers: {
-          ...options!.headers!,
+          // ...options.headers!,
           "Authorization": "Bearer $token",
         },
       );

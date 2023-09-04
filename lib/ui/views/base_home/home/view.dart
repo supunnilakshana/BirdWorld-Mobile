@@ -139,7 +139,9 @@ class HomeView extends StackedView<HomeViewModel> {
                                     left: size.width * 0.04,
                                     right: size.width * 0.04),
                                 child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    viewModel.uploadimg();
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: AppColors.darkBlue,

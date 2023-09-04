@@ -108,7 +108,9 @@ class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> {
                               ),
                               Primarybutton(
                                 width: size.width,
-                                onpress: () {},
+                                onpress: () {
+                                  viewModel.sendVlink();
+                                },
                                 text: "Send Verification link",
                               ),
                               const SizedBox(

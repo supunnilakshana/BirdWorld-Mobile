@@ -1,5 +1,6 @@
 import 'package:birdworld/core/config/routes/router.router.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
+import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
@@ -10,7 +11,7 @@ class SignInViewModel extends BaseViewModel {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailcon = TextEditingController();
   final TextEditingController passwordcon = TextEditingController();
-
+  final AppDialogServices _appDialogServices = AppDialogServices();
   SignInViewModel();
 
   goBack() {
@@ -26,9 +27,17 @@ class SignInViewModel extends BaseViewModel {
   }
 
   signIn() async {
-    AuthService authService = AuthService();
-    await authService.signin("email", "password");
-    // _navigationService.replaceWithBaseHomeView(initIndex: 1);
+    if (formKey.currentState!.validate()) {
+      _appDialogServices.loading();
+      AuthService authService = AuthService();
+      final bool signres = await authService.signin(
+          email: emailcon.text.trim(), password: passwordcon.text);
+      _navigationService.back();
+      if (signres) {
+        print(signres);
+        _navigationService.replaceWith(Routes.baseHomeView);
+      }
+    }
   }
 
   void init() {}

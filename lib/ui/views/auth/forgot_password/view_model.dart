@@ -1,4 +1,5 @@
 import 'package:birdworld/core/config/routes/router.router.dart';
+import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
@@ -15,8 +16,11 @@ class ForgotPasswordViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
-  goSignUp() {
-    _navigationService.navigateTo(Routes.signUpView);
+  sendVlink() async {
+    // _navigationService.navigateTo(Routes.signUpView);
+    AuthService authService = AuthService();
+    final a = await authService.isAuth();
+    print(a);
   }
 
   void init() {}

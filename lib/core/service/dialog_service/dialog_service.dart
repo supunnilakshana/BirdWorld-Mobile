@@ -65,7 +65,7 @@ class AppDialogServices {
                       height: 10,
                     ),
                     CircularProgressIndicator(
-                      color: AppColors.yellow,
+                      color: AppColors.appPrimary,
                     ),
                     SizedBox(
                       height: 10,

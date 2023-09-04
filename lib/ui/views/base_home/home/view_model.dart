@@ -1,3 +1,4 @@
+import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
 import 'package:birdworld/ui/theme/color.dart';
 
@@ -63,6 +64,12 @@ class HomeViewModel extends BaseViewModel {
     isimgload = false;
     image = null;
     notifyListeners();
+  }
+
+  void uploadimg() async {
+    AuthService authService = AuthService();
+    final a = await authService.isAuth();
+    print(a);
   }
 
   void init() {}
