@@ -66,11 +66,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void uploadimg() async {
-    AuthService authService = AuthService();
-    final a = await authService.isAuth();
-    print(a);
-  }
+  void uploadimg() async {}
 
   void init() {}
 }

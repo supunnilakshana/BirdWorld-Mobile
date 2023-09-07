@@ -36,7 +36,7 @@ dependencies:
   readmore: ^2.2.0
   cached_network_image: ^3.2.3
   carousel_slider: ^4.2.1
-  
+  google_sign_in: ^6.1.5
 
 
 

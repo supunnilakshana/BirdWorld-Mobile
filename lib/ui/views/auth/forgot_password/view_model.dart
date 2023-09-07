@@ -18,9 +18,7 @@ class ForgotPasswordViewModel extends BaseViewModel {
 
   sendVlink() async {
     // _navigationService.navigateTo(Routes.signUpView);
-    AuthService authService = AuthService();
-    final a = await authService.isAuth();
-    print(a);
+    ;
   }
 
   void init() {}

@@ -32,7 +32,7 @@ class AuthService {
       required String password}) async {
     try {
       final LoginResponse res =
-          await apiclient.post<LoginResponse>(APIendPonts.signin, data: {
+          await apiclient.post<LoginResponse>(APIendPonts.signup, data: {
         "email": email,
         "firstName": fname,
         "lastName": lname,
@@ -50,7 +50,7 @@ class AuthService {
     }
   }
 
-  Future<bool> isAuth() async {
+  Future<bool> isAuthenticated() async {
     try {
       String? token = await _secureStorageService.getToken;
       if (token == null) {
@@ -64,6 +64,36 @@ class AuthService {
           return false;
         }
       }
+    } on Exception catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> sendResetTokenemail() async {
+    try {
+      String? token = await _secureStorageService.getToken;
+      if (token == null) {
+        return false;
+      } else {
+        await apiclient.post(APIendPonts.authcheck, isTokenNeeded: true);
+        AppUser? appuser = await _secureStorageService.getUserData();
+        if (appuser != null) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } on Exception catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> signOut() async {
+    try {
+      bool res = await _secureStorageService.clearStorage();
+      return res;
     } on Exception catch (e) {
       print(e);
       return false;

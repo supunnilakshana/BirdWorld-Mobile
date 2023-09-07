@@ -139,6 +139,7 @@ class ApiClient {
       print(response);
       return _validateResponse(response);
     } on DioError catch (e) {
+      print(e);
       //_errorInterceptorHandler.onError(e, errorInterceptorHandler);
       if (e.response!.statusCode == 400) {
         throw e.response!.data['message'];

@@ -173,7 +173,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                                   ),
                                   PrimaryPasswordformfiled(
                                     hintText: "Confirm Password",
-                                    controller: viewModel.passwordcon,
+                                    controller: viewModel.confirmpasswordcon,
                                     onchange: (val) {},
                                     valid: (val) => ValidatationService
                                         .confirmPasswordvaild(val!,
@@ -186,7 +186,9 @@ class SignUpView extends StackedView<SignUpViewModel> {
                               ),
                               Primarybutton(
                                 width: size.width,
-                                onpress: () {},
+                                onpress: () {
+                                  viewModel.signUp();
+                                },
                                 text: "Sign Up",
                               ),
                               const SizedBox(
