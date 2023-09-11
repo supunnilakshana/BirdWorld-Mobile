@@ -11,7 +11,8 @@ import 'package:stacked/stacked.dart';
 import 'view_model.dart';
 
 class ResetPasswordView extends StackedView<ResetPasswordViewModel> {
-  const ResetPasswordView({Key? key}) : super(key: key);
+  final Uri dlinkArg;
+  const ResetPasswordView(this.dlinkArg, {Key? key}) : super(key: key);
 
   @override
   Widget builder(
@@ -162,7 +163,7 @@ class ResetPasswordView extends StackedView<ResetPasswordViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => ResetPasswordViewModel();
+  viewModelBuilder(BuildContext context) => ResetPasswordViewModel(dlinkArg);
 
   @override
   void onViewModelReady(ResetPasswordViewModel viewModel) => viewModel.init();

@@ -32,133 +32,131 @@ class SignInView extends StackedView<SignInViewModel> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Container(
               width: double.infinity,
-              height: size.height,
+              height: size.height * 1.1,
               color: AppColors.appPrimary,
-              child: SignInBackground(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 40),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Hello again ",
-                            style: TextStyle(color: Colors.white, fontSize: 30),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text(
-                            "Welcome Back",
-                            style: TextStyle(color: Colors.white, fontSize: 30),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                child: Lottie.asset(
-                                    'assets/animations/sign_in_animi.json',
-                                    height: size.height * 0.2),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 40),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Hello again ",
+                          style: TextStyle(color: Colors.white, fontSize: 30),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text(
+                          "Welcome Back",
+                          style: TextStyle(color: Colors.white, fontSize: 30),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              child: Lottie.asset(
+                                  'assets/animations/sign_in_animi.json',
+                                  height: size.height * 0.2),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10),
-                    Expanded(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(45),
-                                topRight: Radius.circular(45))),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: size.width / 18,
-                              top: size.width / 30,
-                              right: size.width / 18),
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: size.height * 0.05,
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  SufexTextformfiled(
-                                      hintText: "Email",
-                                      iconData: FontAwesomeIcons.envelope,
-                                      controller: viewModel.emailcon,
-                                      onchange: (value) {},
-                                      valid: (value) =>
-                                          ValidatationService.emailvaild(
-                                              value!)),
-                                  SizedBox(
-                                    height: size.height * 0.04,
-                                  ),
-                                  PrimaryPasswordformfiled(
-                                    controller: viewModel.passwordcon,
-                                    onchange: (val) {},
-                                    valid: (val) =>
-                                        ValidatationService.signupPassword(
-                                            val!),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: (() {
-                                      viewModel.goForgotPassword();
-                                    }),
-                                    child: const Text(
-                                      "Forgot Password?",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Primarybutton(
-                                width: size.width,
-                                onpress: () {
-                                  viewModel.signIn();
-                                },
-                                text: "Sign In",
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              AlreadyHaveAnAccountCheck(
-                                login: true,
-                                press: () {
-                                  viewModel.goSignUp();
-                                },
-                              ),
-                              const OrDivider(),
-                              GestureDetector(
-                                onTap: () {},
-                                child: SvgPicture.asset(
-                                  'assets/icons/google_icon.svg',
-                                  height: 80,
-                                  width: 80,
+                  ),
+                  const SizedBox(height: 10),
+                  Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(45),
+                              topRight: Radius.circular(45))),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: size.width / 18,
+                            top: size.width / 30,
+                            right: size.width / 18),
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: size.height * 0.05,
+                            ),
+                            Column(
+                              children: <Widget>[
+                                SufexTextformfiled(
+                                    hintText: "Email",
+                                    iconData: FontAwesomeIcons.envelope,
+                                    controller: viewModel.emailcon,
+                                    onchange: (value) {},
+                                    valid: (value) =>
+                                        ValidatationService.emailvaild(value!)),
+                                SizedBox(
+                                  height: size.height * 0.04,
                                 ),
-                              )
-                            ],
-                          ),
+                                PrimaryPasswordformfiled(
+                                  controller: viewModel.passwordcon,
+                                  onchange: (val) {},
+                                  valid: (val) =>
+                                      ValidatationService.signupPassword(val!),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: (() {
+                                    viewModel.goForgotPassword();
+                                  }),
+                                  child: const Text(
+                                    "Forgot Password?",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Primarybutton(
+                              width: size.width,
+                              onpress: () {
+                                viewModel.signIn();
+                              },
+                              text: "Sign In",
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            AlreadyHaveAnAccountCheck(
+                              login: true,
+                              press: () {
+                                viewModel.goSignUp();
+                              },
+                            ),
+                            const OrDivider(),
+                            GestureDetector(
+                              onTap: () {
+                                viewModel.googlesign();
+                              },
+                              child: SvgPicture.asset(
+                                'assets/icons/google_icon.svg',
+                                height: 80,
+                                width: 80,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:birdworld/core/config/routes/router.router.dart';
+import 'package:birdworld/core/service/dynamic_link_service/dynamic_link_service.dart';
 import 'package:birdworld/locator.dart';
 import 'package:birdworld/provider_setup.dart';
 import 'package:birdworld/ui/theme/theme.dart';
@@ -16,6 +17,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  await DynamicLinkService().initLink();
   runApp(const MyApp());
 }
 

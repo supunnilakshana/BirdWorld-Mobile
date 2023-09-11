@@ -38,5 +38,9 @@ class SignUpViewModel extends BaseViewModel {
     }
   }
 
+  void googlesign() async {
+    await AuthService().googleAuth();
+  }
+
   void init() {}
 }

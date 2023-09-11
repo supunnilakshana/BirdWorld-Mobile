@@ -12,6 +12,7 @@ class SignInViewModel extends BaseViewModel {
   final TextEditingController emailcon = TextEditingController();
   final TextEditingController passwordcon = TextEditingController();
   final AppDialogServices _appDialogServices = AppDialogServices();
+  AuthService authService = AuthService();
   SignInViewModel();
 
   goBack() {
@@ -22,6 +23,13 @@ class SignInViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.signUpView);
   }
 
+  void googlesign() async {
+    final bool signres = await authService.googleAuth();
+    if (signres) {
+      _navigationService.replaceWith(Routes.baseHomeView);
+    }
+  }
+
   goForgotPassword() {
     _navigationService.navigateTo(Routes.forgotPasswordView);
   }
@@ -29,7 +37,7 @@ class SignInViewModel extends BaseViewModel {
   signIn() async {
     if (formKey.currentState!.validate()) {
       _appDialogServices.loading();
-      AuthService authService = AuthService();
+
       final bool signres = await authService.signin(
           email: emailcon.text.trim(), password: passwordcon.text);
       _navigationService.back();

@@ -93,8 +93,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.ResetPasswordView: (data) {
+      final args = data.getArgs<ResetPasswordViewArguments>(nullOk: false);
       return _i1.buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const _i6.ResetPasswordView(),
+        builder: (context) =>
+            _i6.ResetPasswordView(args.dlinkArg, key: args.key),
         settings: data,
       );
     },
@@ -114,6 +116,22 @@ class StackedRouter extends _i1.RouterBase {
   List<_i1.RouteDef> get routes => _routes;
   @override
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
+}
+
+class ResetPasswordViewArguments {
+  const ResetPasswordViewArguments({
+    required this.dlinkArg,
+    this.key,
+  });
+
+  final Uri dlinkArg;
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return '{"dlinkArg": "$dlinkArg", "key": "$key"}';
+  }
 }
 
 class BaseHomeViewArguments {
@@ -189,14 +207,17 @@ extension NavigatorStateExtension on _i9.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToResetPasswordView([
+  Future<dynamic> navigateToResetPasswordView({
+    required Uri dlinkArg,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.resetPasswordView,
+        arguments: ResetPasswordViewArguments(dlinkArg: dlinkArg, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -276,14 +297,17 @@ extension NavigatorStateExtension on _i9.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithResetPasswordView([
+  Future<dynamic> replaceWithResetPasswordView({
+    required Uri dlinkArg,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.resetPasswordView,
+        arguments: ResetPasswordViewArguments(dlinkArg: dlinkArg, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

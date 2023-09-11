@@ -1,3 +1,4 @@
+import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
