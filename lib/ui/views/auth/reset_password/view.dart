@@ -122,7 +122,7 @@ class ResetPasswordView extends StackedView<ResetPasswordViewModel> {
                                   ),
                                   PrimaryPasswordformfiled(
                                     hintText: "Confirm New Password",
-                                    controller: viewModel.passwordcon,
+                                    controller: viewModel.confirmpasswordcon,
                                     onchange: (val) {},
                                     valid: (val) => ValidatationService
                                         .confirmPasswordvaild(val!,
@@ -135,7 +135,9 @@ class ResetPasswordView extends StackedView<ResetPasswordViewModel> {
                               ),
                               Primarybutton(
                                 width: size.width,
-                                onpress: () {},
+                                onpress: () {
+                                  viewModel.resetpw();
+                                },
                                 text: "Reset ",
                               ),
                               const SizedBox(
