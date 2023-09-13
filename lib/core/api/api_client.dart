@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:birdworld/core/config/app/app_config.dart';
+import 'package:birdworld/core/models/app_user.dart';
 import 'package:birdworld/core/models/login_response.dart';
+import 'package:birdworld/core/models/post.dart';
+import 'package:birdworld/core/models/post_comment.dart';
+import 'package:birdworld/core/models/post_like.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
 import 'package:birdworld/core/service/storage_services/secure_storage_service.dart';
 
@@ -73,7 +77,21 @@ class ApiClient {
         case LoginResponse:
           res = LoginResponse.fromMap(_json);
           break;
-
+        case AppUser:
+          res = AppUser.fromMap(_json);
+          break;
+        case Post:
+          res = Post.fromMap(_json);
+          break;
+        case PostComment:
+          res = PostComment.fromMap(_json);
+          break;
+        case PostLike:
+          res = PostLike.fromMap(_json);
+          break;
+        case List<Post>:
+          res = _json.map((json) => Post.fromJson(json)).toList();
+          break;
         case dynamic:
           res = _json;
           break;
@@ -146,9 +164,9 @@ class ApiClient {
       print(e);
       //_errorInterceptorHandler.onError(e, errorInterceptorHandler);
       if (e.response!.statusCode == 400) {
-        throw e.response!.data['message'];
+        throw Exception("Bad req");
       } else {
-        throw e.response!.data['errorMessages'][0];
+        throw Exception(e);
       }
     }
   }
@@ -177,9 +195,9 @@ class ApiClient {
       /* _handleError<T>(e, _errorInterceptorHandler) ;*/
 
       if (e.response!.statusCode == 400) {
-        throw e.response!.data['message'];
+        throw Exception("Bad req");
       } else {
-        throw e.response!.data['errorMessages'][0];
+        throw Exception(e);
       }
     }
   }

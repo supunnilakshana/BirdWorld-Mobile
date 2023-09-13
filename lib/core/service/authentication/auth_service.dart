@@ -28,7 +28,9 @@ class AuthService {
       await _secureStorageService.setUserData(res.user);
       return true;
     } on Exception catch (e) {
-      _appDialogServices.showSnackBar(e.toString());
+      print(e);
+      _appDialogServices.showSnackBar("Invalid Email or Password",
+          backgroundColor: Colors.red);
       return false;
     }
   }
@@ -58,7 +60,8 @@ class AuthService {
       await _secureStorageService.setUserData(res.user);
       return true;
     } catch (e) {
-      print(e.toString());
+      _appDialogServices.showSnackBar("Somthing is went wrong",
+          backgroundColor: Colors.red);
       return false;
     }
   }
@@ -83,7 +86,7 @@ class AuthService {
       return true;
     } on Exception catch (e) {
       print(e);
-      _appDialogServices.showSnackBar(e.toString());
+      _appDialogServices.showSnackBar("Email is already used");
       return false;
     }
   }
@@ -111,13 +114,14 @@ class AuthService {
 
   Future<bool> sendResetTokenemail({required String email}) async {
     try {
-      await apiclient
+      final res = await apiclient
           .get(APIendPonts.reqpwrest, queryParameters: {"email": email});
+      print(res);
       _appDialogServices.showSnackBar("Check your inbox");
       return true;
     } on Exception catch (e) {
       print(e);
-      _appDialogServices.showSnackBar(e.toString(),
+      _appDialogServices.showSnackBar("Invalid Email",
           backgroundColor: Colors.red);
       return false;
     }
@@ -134,7 +138,7 @@ class AuthService {
       return true;
     } on Exception catch (e) {
       print(e);
-      _appDialogServices.showSnackBar(e.toString());
+      _appDialogServices.showSnackBar("Reset link is expired");
       return false;
     }
   }
