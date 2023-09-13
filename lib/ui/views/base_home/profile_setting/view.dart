@@ -92,7 +92,7 @@ class ProfileSettingView extends StackedView<ProfileSettingViewModel> {
                             "More",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.white_gray),
+                                color: AppColors.md_theme_light_font),
                           )),
                     ),
                     Padding(

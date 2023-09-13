@@ -2,6 +2,7 @@ import 'package:birdworld/core/config/routes/router.router.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/bottom_sheet_service/bottom_sheet_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
@@ -31,6 +32,7 @@ class ResetPasswordViewModel extends BaseViewModel {
           token = Uri.decodeComponent(token);
           email = Uri.decodeComponent(email);
           print('Token: $token---------------$email');
+
           appdialogservice.loading();
           final res = await AuthService().resetPassword(
               email: email, token: token, newpasssowrd: passwordcon.text);

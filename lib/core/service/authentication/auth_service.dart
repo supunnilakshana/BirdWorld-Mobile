@@ -128,18 +128,10 @@ class AuthService {
       required String token,
       required String newpasssowrd}) async {
     try {
-      String? token = await _secureStorageService.getToken;
-      if (token == null) {
-        return false;
-      } else {
-        await apiclient.post(APIendPonts.reqpwrest, data: {
-          "email": email,
-          "token": token,
-          "newPassword": newpasssowrd
-        });
+      await apiclient.post(APIendPonts.resetpw,
+          data: {"email": email, "token": token, "newPassword": newpasssowrd});
 
-        return true;
-      }
+      return true;
     } on Exception catch (e) {
       print(e);
       _appDialogServices.showSnackBar(e.toString());

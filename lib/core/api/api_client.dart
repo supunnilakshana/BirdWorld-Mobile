@@ -74,9 +74,12 @@ class ApiClient {
           res = LoginResponse.fromMap(_json);
           break;
 
-        // case :
-        //   res = AccountInfo.fromMap(_json);
-        //   break;
+        case dynamic:
+          res = _json;
+          break;
+        default:
+          res = _json;
+          break;
       }
     }
     return res;
@@ -106,15 +109,16 @@ class ApiClient {
               options: options, isTokenNeeded, isCustomHeaders),
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
-
+      print(response.data);
       return _validateResponse(response);
     } on DioError catch (e) {
+      print(e);
       if (e.response!.statusCode == 400) {
         e.response;
       }
       //_errorInterceptorHandler.onError(e, errorInterceptorHandler);
-      throw e.response!.data['errorMessages']
-          [0] /* _handleError<T>(e, _errorInterceptorHandler) */;
+      throw Exception(e);
+      [0] /* _handleError<T>(e, _errorInterceptorHandler) */;
     }
   }
 

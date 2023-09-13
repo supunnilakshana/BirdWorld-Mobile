@@ -1,7 +1,7 @@
 class APIendPonts {
   static const String signin = "auth/signin";
   static const String signup = "auth/signup";
-  static const String resetpw = "auth/resetpw";
+  static const String resetpw = "auth/resetpassword";
   static const String reqpwrest = "auth/reqpwrest";
   static const String chnagepassword = "auth/changepassword";
   static const String authcheck = "auth/authcheck";
