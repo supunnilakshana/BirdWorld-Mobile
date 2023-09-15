@@ -59,8 +59,8 @@ class Post {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
-      'created': created.millisecondsSinceEpoch,
-      'updated': updated.millisecondsSinceEpoch,
+      //  'created': created.millisecondsSinceEpoch,
+      'updated': updated.toIso8601String(),
       'user': user.toMap(),
       'comments': comments.map((x) => x.toMap()).toList(),
       'likes': likes.map((x) => x.toMap()).toList(),
@@ -73,16 +73,16 @@ class Post {
       title: map['title'] as String,
       description: map['description'] as String,
       imageUrl: map['imageUrl'] as String,
-      created: DateTime.fromMillisecondsSinceEpoch(map['created'] as int),
-      updated: DateTime.fromMillisecondsSinceEpoch(map['updated'] as int),
+      created: DateTime.parse(map['created']),
+      updated: DateTime.parse(map['updated']),
       user: AppUser.fromMap(map['user'] as Map<String, dynamic>),
       comments: List<PostComment>.from(
-        (map['comments'] as List<int>).map<PostComment>(
+        (map['comments']).map<PostComment>(
           (x) => PostComment.fromMap(x as Map<String, dynamic>),
         ),
       ),
       likes: List<PostLike>.from(
-        (map['likes'] as List<int>).map<PostLike>(
+        (map['likes']).map<PostLike>(
           (x) => PostLike.fromMap(x as Map<String, dynamic>),
         ),
       ),

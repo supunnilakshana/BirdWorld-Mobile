@@ -1,3 +1,4 @@
+import 'package:birdworld/core/service/api_services/comminity_service.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
 import 'package:birdworld/ui/theme/color.dart';
@@ -66,7 +67,10 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void uploadimg() async {}
+  void uploadimg() async {
+    final res = await CommunityService().getAllPost();
+    print(res);
+  }
 
   void init() {}
 }

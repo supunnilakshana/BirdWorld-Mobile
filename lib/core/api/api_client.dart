@@ -69,9 +69,21 @@ class ApiClient {
   }
 
   T getEntity<T>(_json) {
+    print(_json);
     var res;
 
     if (_json is List) {
+      switch (T) {
+        case List<Post>:
+          res = _json.map((map) => Post.fromMap(map)).toList();
+          break;
+        case dynamic:
+          res = _json;
+          break;
+        default:
+          res = _json;
+          break;
+      }
     } else {
       switch (T) {
         case LoginResponse:
@@ -90,7 +102,7 @@ class ApiClient {
           res = PostLike.fromMap(_json);
           break;
         case List<Post>:
-          res = _json.map((json) => Post.fromJson(json)).toList();
+          res = _json.map((map) => Post.fromMap(map)).toList();
           break;
         case dynamic:
           res = _json;

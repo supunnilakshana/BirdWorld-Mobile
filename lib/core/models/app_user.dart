@@ -47,7 +47,7 @@ class AppUser {
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
       email: map['email'] as String,
-      role: map['role'] as String,
+      role: map['role'] ?? "",
     );
   }
 
