@@ -8,7 +8,7 @@ import 'package:birdworld/core/models/post_comment.dart';
 import 'package:birdworld/core/models/post_like.dart';
 
 class Post {
-  final int id;
+  final int? id;
   final String title;
   final String description;
   final String imageUrl;
@@ -18,7 +18,7 @@ class Post {
   final List<PostComment> comments;
   final List<PostLike> likes;
   Post({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
     required this.imageUrl,
@@ -59,7 +59,7 @@ class Post {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
-      //  'created': created.millisecondsSinceEpoch,
+      'created': created.toIso8601String(),
       'updated': updated.toIso8601String(),
       'user': user.toMap(),
       'comments': comments.map((x) => x.toMap()).toList(),

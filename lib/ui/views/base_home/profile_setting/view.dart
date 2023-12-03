@@ -2,6 +2,7 @@ import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/tiles/account_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'view_model.dart';
 
@@ -141,7 +142,8 @@ class ProfileSettingView extends StackedView<ProfileSettingViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => ProfileSettingViewModel();
+  viewModelBuilder(BuildContext context) =>
+      ProfileSettingViewModel(Provider.of(context));
 
   @override
   void onViewModelReady(ProfileSettingViewModel viewModel) => viewModel.init();

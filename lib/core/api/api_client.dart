@@ -286,7 +286,9 @@ class ApiClient {
                 .showSnackBar(error.response!.data['message']);
 
           case 401:
-            // await retryRequest(error, errorInterceptorHandler);
+            errorInterceptorHandler.reject(error);
+            // throw _customDialogService.showSnackBar("Something went Wrong",
+            //     style: const TextStyle(color: Colors.white));
             break;
           case 470:
             // await unsupportedDevice(error, errorInterceptorHandler);

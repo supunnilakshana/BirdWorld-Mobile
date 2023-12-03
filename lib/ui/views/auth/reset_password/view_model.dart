@@ -2,6 +2,7 @@ import 'package:birdworld/core/config/routes/router.router.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/bottom_sheet_service/bottom_sheet_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
+import 'package:birdworld/core/service/providers/app_user_provider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -15,7 +16,8 @@ class ResetPasswordViewModel extends BaseViewModel {
   final TextEditingController passwordcon = TextEditingController();
   final TextEditingController confirmpasswordcon = TextEditingController();
   final AppDialogServices appdialogservice = AppDialogServices();
-  ResetPasswordViewModel(this.dlinkArg);
+  final AppUserProvider appUserProvider;
+  ResetPasswordViewModel(this.dlinkArg, this.appUserProvider);
 
   goBack() {
     _navigationService.back();
@@ -34,7 +36,7 @@ class ResetPasswordViewModel extends BaseViewModel {
           print('Token: $token---------------$email');
 
           appdialogservice.loading();
-          final res = await AuthService().resetPassword(
+          final res = await AuthService(appUserProvider).resetPassword(
               email: email, token: token, newpasssowrd: passwordcon.text);
           _navigationService.back();
           if (res) {

@@ -1,6 +1,7 @@
 import 'package:birdworld/core/config/routes/router.router.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
+import 'package:birdworld/core/service/providers/app_user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
@@ -10,10 +11,11 @@ class SignInViewModel extends BaseViewModel {
   final NavigationService _navigationService = GetIt.I.get();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailcon = TextEditingController();
+  final AppUserProvider appUserProvider;
   final TextEditingController passwordcon = TextEditingController();
   final AppDialogServices _appDialogServices = AppDialogServices();
-  AuthService authService = AuthService();
-  SignInViewModel();
+  late AuthService authService;
+  SignInViewModel(this.appUserProvider);
 
   goBack() {
     _navigationService.back();
@@ -48,5 +50,7 @@ class SignInViewModel extends BaseViewModel {
     }
   }
 
-  void init() {}
+  void init() {
+    authService = AuthService(appUserProvider);
+  }
 }
