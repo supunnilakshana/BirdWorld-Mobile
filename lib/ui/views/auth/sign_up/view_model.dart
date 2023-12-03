@@ -1,6 +1,7 @@
 import 'package:birdworld/core/config/routes/router.router.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
+import 'package:birdworld/core/service/providers/app_user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
@@ -15,9 +16,10 @@ class SignUpViewModel extends BaseViewModel {
   final TextEditingController lastnamecon = TextEditingController();
   final TextEditingController passwordcon = TextEditingController();
   final TextEditingController confirmpasswordcon = TextEditingController();
-  final AuthService _authservice = AuthService();
+  late AuthService _authservice;
+  final AppUserProvider appUserProvider;
   final AppDialogServices _appDialogServices = AppDialogServices();
-  SignUpViewModel();
+  SignUpViewModel(this.appUserProvider);
 
   goBack() {
     _navigationService.back();
@@ -39,8 +41,10 @@ class SignUpViewModel extends BaseViewModel {
   }
 
   void googlesign() async {
-    await AuthService().googleAuth();
+    await _authservice.googleAuth();
   }
 
-  void init() {}
+  void init() {
+    _authservice = AuthService(appUserProvider);
+  }
 }

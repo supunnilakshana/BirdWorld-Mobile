@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 import 'view_model.dart';
@@ -166,7 +167,8 @@ class SignInView extends StackedView<SignInViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => SignInViewModel();
+  viewModelBuilder(BuildContext context) =>
+      SignInViewModel(Provider.of(context));
 
   @override
   void onViewModelReady(SignInViewModel viewModel) => viewModel.init();

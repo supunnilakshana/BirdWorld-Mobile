@@ -1,8 +1,6 @@
-import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/views/splash/view_model.dart';
-import 'package:birdworld/ui/widgets/text_fileds/sufex_textfield.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 class SplashView extends StackedView<SplashViewModel> {
@@ -38,7 +36,8 @@ class SplashView extends StackedView<SplashViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => SplashViewModel();
+  viewModelBuilder(BuildContext context) =>
+      SplashViewModel(Provider.of(context));
 
   @override
   void onViewModelReady(SplashViewModel viewModel) => viewModel.init();

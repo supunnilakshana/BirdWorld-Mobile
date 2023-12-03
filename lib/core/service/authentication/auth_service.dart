@@ -4,6 +4,7 @@ import 'package:birdworld/core/enums/roles_enum.dart';
 import 'package:birdworld/core/models/app_user.dart';
 import 'package:birdworld/core/models/login_response.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
+import 'package:birdworld/core/service/providers/app_user_provider.dart';
 import 'package:birdworld/core/service/storage_services/secure_storage_service.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,14 @@ class AuthService {
   ApiClient apiclient = ApiClient();
   final SecureStorageService _secureStorageService = SecureStorageService();
   final AppDialogServices _appDialogServices = AppDialogServices();
+  final AppUserProvider appUserProvider;
   final googleSignIn = GoogleSignIn(
       clientId:
           '801488927192-41skflgu7tn24kme4vi5s79p2mv4e457.apps.googleusercontent.com',
       serverClientId:
           "801488927192-811loukusmn2epu4oqerro58u71qp41t.apps.googleusercontent.com");
+
+  AuthService(this.appUserProvider);
 
   Future<bool> signin({required String email, required String password}) async {
     try {
@@ -26,6 +30,7 @@ class AuthService {
           data: {"password": password, "email": email});
       await _secureStorageService.setToken(res.token);
       await _secureStorageService.setUserData(res.user);
+      appUserProvider.setappUser = res.user;
       return true;
     } on Exception catch (e) {
       print(e);
@@ -58,6 +63,7 @@ class AuthService {
           data: {"token": idToken, "role": UserRoles.GUser.name});
       await _secureStorageService.setToken(res.token);
       await _secureStorageService.setUserData(res.user);
+      appUserProvider.setappUser = res.user;
       return true;
     } catch (e) {
       _appDialogServices.showSnackBar("Somthing is went wrong",
@@ -83,6 +89,7 @@ class AuthService {
 
       await _secureStorageService.setToken(res.token);
       await _secureStorageService.setUserData(res.user);
+      appUserProvider.setappUser = res.user;
       return true;
     } on Exception catch (e) {
       print(e);
@@ -99,7 +106,9 @@ class AuthService {
       } else {
         await apiclient.post(APIendPonts.authcheck, isTokenNeeded: true);
         AppUser? appuser = await _secureStorageService.getUserData();
+
         if (appuser != null) {
+          appUserProvider.setappUser = appuser;
           return true;
         } else {
           return false;
@@ -107,7 +116,7 @@ class AuthService {
       }
     } on Exception catch (e) {
       print(e);
-      _appDialogServices.showSnackBar(e.toString());
+      // _appDialogServices.showSnackBar(e.toString());
       return false;
     }
   }
@@ -146,6 +155,7 @@ class AuthService {
   Future<bool> signOut() async {
     try {
       bool res = await _secureStorageService.clearStorage();
+      appUserProvider.setappUser = null;
       await googleSignIn.signOut();
       return res;
     } on Exception catch (e) {

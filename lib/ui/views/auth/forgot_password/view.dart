@@ -6,6 +6,7 @@ import 'package:birdworld/ui/widgets/text_fileds/sufex_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'view_model.dart';
 
@@ -132,7 +133,8 @@ class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => ForgotPasswordViewModel();
+  viewModelBuilder(BuildContext context) =>
+      ForgotPasswordViewModel(Provider.of(context));
 
   @override
   void onViewModelReady(ForgotPasswordViewModel viewModel) => viewModel.init();

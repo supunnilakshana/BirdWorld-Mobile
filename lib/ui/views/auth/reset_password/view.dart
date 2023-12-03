@@ -6,6 +6,7 @@ import 'package:birdworld/ui/widgets/checkers/already_have_an_account_acheck.dar
 import 'package:birdworld/ui/widgets/text_fileds/password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 import 'view_model.dart';
@@ -165,7 +166,8 @@ class ResetPasswordView extends StackedView<ResetPasswordViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => ResetPasswordViewModel(dlinkArg);
+  viewModelBuilder(BuildContext context) =>
+      ResetPasswordViewModel(dlinkArg, Provider.of(context));
 
   @override
   void onViewModelReady(ResetPasswordViewModel viewModel) => viewModel.init();
