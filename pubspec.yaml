@@ -40,8 +40,10 @@ dependencies:
   firebase_database: ^10.2.5
   firebase_dynamic_links: ^5.1.0
   awesome_dialog: ^3.1.0
-
-
+  velocity_x: ^4.0.0
+  dots_indicator: ^3.0.0
+  flutter_chat_ui: ^1.6.9
+  dart_openai: 1.9.7
 
 dev_dependencies:
   flutter_test:
