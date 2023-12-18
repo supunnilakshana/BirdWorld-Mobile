@@ -24,19 +24,32 @@ class IdentificationScreenViewModel extends BaseViewModel {
 
   goStore() {}
 
-  DateTime pre_backpress = DateTime.now();
-  Future<bool> onBack() {
-    final timegap = DateTime.now().difference(pre_backpress);
-    final cantExit = timegap >= const Duration(seconds: 2);
-    pre_backpress = DateTime.now();
-    if (cantExit) {
-      AppDialogServices().showSnackBar("Press Back button again to Exit",
-          backgroundColor: AppColors.appPrimary);
+  void _showBirdDialog(BuildContext context, String birdName) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Bird Name"),
+          content: Text(birdName),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-      return Future<bool>.value(false);
-    } else {
-      return Future<bool>.value(true);
-    }
+  void delayedShowBirdDialog(BuildContext context) {
+    AppDialogServices().loading();
+    Future.delayed(const Duration(seconds: 4), () {
+      _navigationService.back();
+      _showBirdDialog(context, "ABBOTTS BABBLER");
+    });
   }
 
   Future<void> selectimgFromGallery() async {

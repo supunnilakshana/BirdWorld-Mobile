@@ -66,8 +66,8 @@ class HomeView extends StackedView<HomeViewModel> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.05),
                                 child: ListTile(
-                                    title: const Text(
-                                      "Hi, Supun",
+                                    title: Text(
+                                      "Hi, ${viewModel.appuser.getappUser!.firstName}",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
@@ -187,7 +187,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                             "Identifly",
                                             style: TextStyle(
                                                 fontSize: 14,
-                                                color: AppColors.white,
+                                                color: AppColors.blue,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Icon(

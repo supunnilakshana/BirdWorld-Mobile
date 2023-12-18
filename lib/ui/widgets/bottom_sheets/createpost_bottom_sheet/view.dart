@@ -221,8 +221,8 @@ class CreatePostBottomSheetView
   }
 
   @override
-  viewModelBuilder(BuildContext context) =>
-      CreatePostBottomSheetViewModel(Provider.of(context));
+  viewModelBuilder(BuildContext context) => CreatePostBottomSheetViewModel(
+      Provider.of(context), Provider.of(context));
 
   @override
   void onViewModelReady(CreatePostBottomSheetViewModel viewModel) =>

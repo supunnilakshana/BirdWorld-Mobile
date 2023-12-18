@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:birdworld/core/models/post.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +8,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 
 class PostItem extends StatefulWidget {
+  final Post post;
   final Function() commentfun;
   const PostItem({
     Key? key,
     required this.commentfun,
+    required this.post,
   }) : super(key: key);
 
   @override
@@ -17,7 +22,8 @@ class PostItem extends StatefulWidget {
 
 class PostItemState extends State<PostItem> with TickerProviderStateMixin {
   bool showStar = false;
-
+  int likecount = 1;
+  int timec = 1;
   void _toggleStar() {
     setState(() {
       showStar = !showStar;
@@ -28,18 +34,22 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
   String date = '';
   @override
   void initState() {
+    likecount = Random().nextInt(8) + 1;
+    timec = Random().nextInt(5) + 1;
     super.initState();
   }
 
   changeLike() {
     if (islike == false) {
       islike = true;
+      likecount++;
       _toggleStar();
       Future.delayed(const Duration(seconds: 1), () {
         _toggleStar();
       });
     } else {
       islike = false;
+      likecount--;
     }
     setState(() {});
   }
@@ -71,7 +81,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
                             child: CircleAvatar(
                               radius: size.width * 0.05,
                               backgroundImage: const NetworkImage(
-                                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600"),
+                                  "https://firebasestorage.googleapis.com/v0/b/birdworld-137aa.appspot.com/o/user34.png?alt=media&token=6c6ff817-7115-4166-9090-a3aafae3c93f"),
                             ),
                           ),
                           Padding(
@@ -80,7 +90,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Poreen",
+                                  " ${widget.post.user.firstName}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.7),
@@ -88,7 +98,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
                                       fontWeight: FontWeight.w400),
                                 ),
                                 Text(
-                                  "(hurar)",
+                                  "member",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.5),
@@ -133,8 +143,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
                             Radius.circular(size.width * 0.02)),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl:
-                              "https://www.vdio.com/wp-content/uploads/2017/01/turaco.jpg",
+                          imageUrl: widget.post.imageUrl,
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
@@ -226,7 +235,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "2 hours ago",
+                              "${timec} hours ago",
                               style: TextStyle(
                                   color: Colors.black.withOpacity(0.6)),
                             )
@@ -248,7 +257,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "112 Likes",
+                    "${likecount} Likes",
                     style: TextStyle(
                         letterSpacing: 0.4,
                         color: Colors.black.withOpacity(0.9),
@@ -261,7 +270,7 @@ class PostItemState extends State<PostItem> with TickerProviderStateMixin {
               padding:
                   const EdgeInsets.only(top: 5, left: 8, right: 8, bottom: 5),
               child: ReadMoreText(
-                "Just finished a long day of work, and there's nothing better than coming home to this view. The sunsets here are always so beautiful, and it's the perfect way to relax and unwind.",
+                widget.post.description,
                 trimLength: 200,
                 style: TextStyle(
                   fontSize: size.width * 0.035,

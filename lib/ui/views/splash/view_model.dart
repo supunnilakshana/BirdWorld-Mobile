@@ -22,9 +22,10 @@ class SplashViewModel extends BaseViewModel {
       if (authstatus) {
         final AppUser? user = await _securestorageService.getUserData();
         if (user == null || user.id == null) {
-          appUserProvider.setappUser = user!;
           _navigationService.replaceWith(Routes.signInView);
         } else {
+          appUserProvider.setappUser = user;
+          print(appUserProvider.getappUser!.email);
           _navigationService.replaceWith(Routes.baseHomeView);
         }
       } else {

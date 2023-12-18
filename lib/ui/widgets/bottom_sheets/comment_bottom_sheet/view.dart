@@ -1,3 +1,4 @@
+import 'package:birdworld/core/models/post.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/theme/style.dart';
 import 'package:birdworld/ui/widgets/empty_views/empty_comment.dart';
@@ -10,8 +11,8 @@ import 'package:stacked/stacked.dart';
 import 'view_model.dart';
 
 class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
-  const CommentBottomSheetView({Key? key}) : super(key: key);
-
+  const CommentBottomSheetView(this.post, {Key? key}) : super(key: key);
+  final Post post;
   @override
   Widget builder(BuildContext context, CommentBottomSheetViewModel viewModel,
       Widget? child) {
@@ -86,7 +87,7 @@ class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
                         child: CircleAvatar(
                           radius: size.width * 0.05,
                           backgroundImage: const NetworkImage(
-                              "https://previews.123rf.com/images/realityimages/realityimages1803/realityimages180300953/97894659-indian-boy-posing-with-motorbike-at-pune-maharashtra.jpg"),
+                              "https://firebasestorage.googleapis.com/v0/b/birdworld-137aa.appspot.com/o/user34.png?alt=media&token=6c6ff817-7115-4166-9090-a3aafae3c93f"),
                         ),
                       ),
                       maxLine: null,
@@ -109,10 +110,12 @@ class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
                       child: const Center(child: EmptyComment()))
                   : ListView.builder(
                       shrinkWrap: true,
-                      itemCount: 8,
+                      itemCount: post.comments.length,
                       padding: const EdgeInsets.symmetric(vertical: 2),
                       itemBuilder: (context, index) {
-                        return const CommentItemTile();
+                        return CommentItemTile(
+                          cooment: post.comments[index],
+                        );
                       },
                     ),
             ),
@@ -123,7 +126,7 @@ class CommentBottomSheetView extends StackedView<CommentBottomSheetViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => CommentBottomSheetViewModel();
+  viewModelBuilder(BuildContext context) => CommentBottomSheetViewModel(post);
 
   @override
   void onViewModelReady(CommentBottomSheetViewModel viewModel) =>

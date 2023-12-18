@@ -1,3 +1,4 @@
+import 'package:birdworld/core/service/providers/app_user_provider.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/tiles/account_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class ProfileSettingView extends StackedView<ProfileSettingViewModel> {
     final size = MediaQuery.of(context).size;
     final node = FocusScope.of(context);
     final theme = Theme.of(context);
+    final AppUserProvider ap = Provider.of(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -29,20 +31,20 @@ class ProfileSettingView extends StackedView<ProfileSettingViewModel> {
                     ),
                     CircleAvatar(
                       backgroundImage: const NetworkImage(
-                          "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600"),
+                          "https://firebasestorage.googleapis.com/v0/b/birdworld-137aa.appspot.com/o/user34.png?alt=media&token=6c6ff817-7115-4166-9090-a3aafae3c93f"),
                       backgroundColor: AppColors.white_gray,
                       radius: size.width * 0.15,
                     ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
-                    const Text(
-                      "Poreen Perera",
+                    Text(
+                      "${ap.getappUser!.firstName} ${ap.getappUser!.lastName}",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    const Text(
-                      "pomareen@pomail.com",
+                    Text(
+                      ap.getappUser!.email,
                       style:
                           TextStyle(fontSize: 15, color: AppColors.darkblack),
                     ),

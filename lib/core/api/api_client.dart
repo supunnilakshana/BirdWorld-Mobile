@@ -278,12 +278,10 @@ class ApiClient {
       case DioErrorType.badResponse:
         switch (error.response?.statusCode) {
           case 400:
-            errorInterceptorHandler.reject(error);
+            throw Exception("err");
 
-            //errorInterceptorHandler.next(error);
-            // throw error.response!.data['message'];
-            throw _customDialogService
-                .showSnackBar(error.response!.data['message']);
+          //errorInterceptorHandler.next(error);
+          // throw error.response!.data['message'];
 
           case 401:
             errorInterceptorHandler.reject(error);

@@ -109,6 +109,7 @@ class AuthService {
 
         if (appuser != null) {
           appUserProvider.setappUser = appuser;
+
           return true;
         } else {
           return false;

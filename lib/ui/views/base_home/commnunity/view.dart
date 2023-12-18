@@ -1,4 +1,5 @@
 import 'package:birdworld/core/enums/data_fetch_enum.dart';
+import 'package:birdworld/core/models/post.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:birdworld/ui/widgets/empty_views/empty_post.dart';
 import 'package:birdworld/ui/widgets/error_views/error_view.dart';
@@ -9,6 +10,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'package:stacked/stacked.dart';
 import 'view_model.dart';
@@ -55,7 +57,7 @@ class CommunityView extends StackedView<CommunityViewModel> {
                       child: CircleAvatar(
                         radius: size.width * 0.05,
                         backgroundImage: const NetworkImage(
-                            "https://previews.123rf.com/images/realityimages/realityimages1803/realityimages180300953/97894659-indian-boy-posing-with-motorbike-at-pune-maharashtra.jpg"),
+                            "https://firebasestorage.googleapis.com/v0/b/birdworld-137aa.appspot.com/o/user34.png?alt=media&token=6c6ff817-7115-4166-9090-a3aafae3c93f"),
                       ),
                     ),
                   ),
@@ -74,13 +76,17 @@ class CommunityView extends StackedView<CommunityViewModel> {
                           : ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: viewModel.postlist.length,
+                              itemCount: viewModel.dataProvider.posts.length,
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
                                     PostItem(
+                                      post: viewModel.dataProvider.posts[index],
                                       commentfun: () {
-                                        viewModel.openCommentBottom(context);
+                                        viewModel.openCommentBottom(
+                                            context,
+                                            viewModel
+                                                .dataProvider.posts[index]);
                                       },
                                     ),
                                     const Divider(
@@ -101,7 +107,8 @@ class CommunityView extends StackedView<CommunityViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) => CommunityViewModel();
+  viewModelBuilder(BuildContext context) =>
+      CommunityViewModel(Provider.of(context));
 
   @override
   void onViewModelReady(CommunityViewModel viewModel) => viewModel.init();

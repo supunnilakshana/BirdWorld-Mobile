@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 class AppUserProvider extends ChangeNotifier {
   AppUser? _appUser;
   set setappUser(AppUser? appUser) {
-    appUser = appUser;
+    _appUser = appUser;
+
     notifyListeners();
   }
 

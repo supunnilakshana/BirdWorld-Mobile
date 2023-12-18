@@ -1,10 +1,13 @@
+import 'package:birdworld/core/models/post_comment.dart';
 import 'package:birdworld/ui/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CommentItemTile extends StatefulWidget {
+  final PostComment cooment;
   const CommentItemTile({
     super.key,
+    required this.cooment,
   });
 
   @override
@@ -19,14 +22,14 @@ class _CommentItemTileState extends State<CommentItemTile> {
     return ListTile(
       leading: const CircleAvatar(
         backgroundImage: NetworkImage(
-          "https://media.istockphoto.com/id/490483300/photo/portrait-of-beautiful-blonde-woman-with-curly-hairstyle.jpg?s=612x612&w=0&k=20&c=Va_kGiVu8GGOZWhREhqD9j8O5TqNn9zGzWZUKQz1_vs=",
+          "https://firebasestorage.googleapis.com/v0/b/birdworld-137aa.appspot.com/o/user34.png?alt=media&token=6c6ff817-7115-4166-9090-a3aafae3c93f",
         ),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "namsarii de silva",
+            widget.cooment.user.firstName,
             style: TextStyle(color: Colors.black.withOpacity(0.8)),
           ),
         ],
@@ -34,7 +37,7 @@ class _CommentItemTileState extends State<CommentItemTile> {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Good morning  broh !!!",
+          Text(widget.cooment.context,
               style: TextStyle(
                 color: Colors.black.withOpacity(0.8),
               )),
@@ -65,7 +68,7 @@ class _CommentItemTileState extends State<CommentItemTile> {
             },
           ),
           Text(
-            "10",
+            "5",
             style:
                 TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 15),
           ),

@@ -57,16 +57,12 @@ class Post {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
       'created': created.toIso8601String(),
       'updated': updated.toIso8601String(),
-      'user': user.toMap(),
-      'userId,': userId,
-      'comments': comments.map((x) => x.toMap()).toList(),
-      'likes': likes.map((x) => x.toMap()).toList(),
+      'userId': userId!
     };
   }
 
