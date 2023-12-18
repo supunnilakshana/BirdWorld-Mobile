@@ -8,5 +8,5 @@ class AppUserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  get getappUser => _appUser;
+  AppUser? get getappUser => _appUser;
 }

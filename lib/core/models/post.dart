@@ -15,6 +15,7 @@ class Post {
   final DateTime created;
   final DateTime updated;
   final AppUser user;
+  final String? userId;
   final List<PostComment> comments;
   final List<PostLike> likes;
   Post({
@@ -27,6 +28,7 @@ class Post {
     required this.user,
     required this.comments,
     required this.likes,
+    this.userId,
   });
 
   Post copyWith({
@@ -62,6 +64,7 @@ class Post {
       'created': created.toIso8601String(),
       'updated': updated.toIso8601String(),
       'user': user.toMap(),
+      'userId,': userId,
       'comments': comments.map((x) => x.toMap()).toList(),
       'likes': likes.map((x) => x.toMap()).toList(),
     };
@@ -72,7 +75,7 @@ class Post {
       id: map['id'] as int,
       title: map['title'] as String,
       description: map['description'] as String,
-      imageUrl: map['imageUrl'] as String,
+      imageUrl: map['imageUrl'] ?? "",
       created: DateTime.parse(map['created']),
       updated: DateTime.parse(map['updated']),
       user: AppUser.fromMap(map['user'] as Map<String, dynamic>),

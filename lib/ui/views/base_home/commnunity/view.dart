@@ -1,4 +1,8 @@
+import 'package:birdworld/core/enums/data_fetch_enum.dart';
 import 'package:birdworld/ui/theme/color.dart';
+import 'package:birdworld/ui/widgets/empty_views/empty_post.dart';
+import 'package:birdworld/ui/widgets/error_views/error_view.dart';
+import 'package:birdworld/ui/widgets/lodings/primary_loading.dart';
 import 'package:birdworld/ui/widgets/postItem/post_item.dart';
 import 'package:birdworld/ui/widgets/text_fileds/comment_textfield.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
@@ -20,11 +24,7 @@ class CommunityView extends StackedView<CommunityViewModel> {
   Widget builder(
       BuildContext context, CommunityViewModel viewModel, Widget? child) {
     final size = MediaQuery.of(context).size;
-    final post = PostItem(
-      commentfun: () {
-        viewModel.openCommentBottom(context);
-      },
-    );
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -66,23 +66,33 @@ class CommunityView extends StackedView<CommunityViewModel> {
                 color: AppColors.white_gray,
                 height: 2,
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      post,
-                      const Divider(
-                        thickness: 1,
-                        color: AppColors.white_gray,
-                        height: 2,
-                      ),
-                    ],
-                  );
-                },
-              ),
+              viewModel.fetchingstatus == FetchingStatus.wating
+                  ? const Center(child: PrimaryLoading())
+                  : viewModel.fetchingstatus == FetchingStatus.sucess
+                      ? viewModel.postlist.isEmpty
+                          ? const Center(child: EmptyView())
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: viewModel.postlist.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    PostItem(
+                                      commentfun: () {
+                                        viewModel.openCommentBottom(context);
+                                      },
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                      color: AppColors.white_gray,
+                                      height: 2,
+                                    ),
+                                  ],
+                                );
+                              },
+                            )
+                      : const Errorpage(),
             ],
           ),
         ),

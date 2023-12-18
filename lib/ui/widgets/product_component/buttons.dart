@@ -64,7 +64,7 @@ class PrimaryShadowedButton extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           gradient: const RadialGradient(
-              colors: [Colors.black54, Colors.black],
+              colors: [AppColors.appPrimary, AppColors.blue],
               center: Alignment.topLeft,
               radius: 2),
           boxShadow: [
@@ -108,6 +108,7 @@ class FavouriteButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(Colors.pink),
           elevation: MaterialStateProperty.all(4),
           shadowColor: MaterialStateProperty.all(Colors.pink)),
+      onPressed: onPressed,
       child: Center(
         child: Icon(
           Icons.favorite,
@@ -115,7 +116,6 @@ class FavouriteButton extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      onPressed: onPressed,
     );
   }
 }
@@ -134,13 +134,13 @@ class RoundedAddButton extends StatelessWidget {
         elevation: 0,
         padding: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        onPressed: onPressed,
+        color: AppColors.appPrimary,
         child: Icon(
           FontAwesomeIcons.plus,
           size: 16,
           color: Theme.of(context).colorScheme.surface,
-        ).centered(),
-        onPressed: onPressed,
-        color: Colors.black);
+        ).centered());
   }
 }
 

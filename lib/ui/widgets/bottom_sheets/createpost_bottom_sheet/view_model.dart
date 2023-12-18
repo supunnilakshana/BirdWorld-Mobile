@@ -1,5 +1,10 @@
+import 'dart:typed_data';
+
+import 'package:birdworld/core/config/endapoints/storage_collection.dart';
 import 'package:birdworld/core/models/post.dart';
+import 'package:birdworld/core/service/api_services/comminity_service.dart';
 import 'package:birdworld/core/service/providers/app_user_provider.dart';
+import 'package:birdworld/core/service/storage_services/cloud_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -53,17 +58,28 @@ class CreatePostBottomSheetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  createPost() {
-    if (formKey.currentState!.validate()) {
+  createPost() async {
+    if (formKey.currentState!.validate() && isimgload) {
+      List<int> bytes = await image!.readAsBytes();
+
+      // Convert the bytes to Uint8List
+      Uint8List uint8List = Uint8List.fromList(bytes);
+
+      String imageurl = await CloudStorageServices().uploadImage(uint8List,
+          StroageCollection.postdata, appUserProvider.getappUser!.id!);
       final post = Post(
           title: "title",
           description: "description",
-          imageUrl: " imageUr",
+          imageUrl: imageurl,
           created: DateTime.now(),
           updated: DateTime.now(),
           user: appUserProvider.getappUser!,
+          userId: appUserProvider.getappUser!.id!,
           comments: [],
           likes: []);
+
+      await CommunityService().createPost(post);
+      print("done");
     }
   }
 }

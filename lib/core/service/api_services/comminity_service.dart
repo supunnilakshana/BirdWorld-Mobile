@@ -5,14 +5,14 @@ import 'package:birdworld/core/models/post.dart';
 class CommunityService {
   final ApiClient apiclient = ApiClient();
 
-  Future<List<Post>?> getAllPost() async {
+  Future<List<Post>> getAllPost() async {
     try {
       final List<Post> post = await apiclient
           .get<List<Post>>(APIendPonts.getAllPosts, isTokenNeeded: true);
 
       return post;
     } catch (e) {
-      return null;
+      rethrow;
     }
   }
 

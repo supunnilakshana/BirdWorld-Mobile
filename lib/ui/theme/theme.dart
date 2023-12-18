@@ -10,6 +10,7 @@ class AppTheme {
         inputDecorationTheme: _inputDecorationTheme,
         elevatedButtonTheme: _elevatedButtonThemeData,
         textButtonTheme: _textButtonThemeData,
+        brightness: Brightness.light,
         listTileTheme: _listTileThemeData);
   }
 
@@ -27,21 +28,6 @@ class AppTheme {
       onBackground: AppColors.md_theme_light_onBackground,
       onError: AppColors.md_theme_light_onError,
       brightness: Brightness.light);
-
-  static const ColorScheme _darkColorScheme = ColorScheme(
-      primary: AppColors.md_theme_dark_primary,
-      primaryContainer: AppColors.md_theme_dark_primaryContainer,
-      onPrimaryContainer: AppColors.md_theme_dark_onPrimaryContainer,
-      secondary: AppColors.md_theme_dark_secondary,
-      surface: AppColors.md_theme_dark_surface,
-      background: AppColors.md_theme_dark_background,
-      error: AppColors.md_theme_dark_error,
-      onPrimary: AppColors.md_theme_dark_onPrimary,
-      onSecondary: AppColors.md_theme_dark_onSecondary,
-      onSurface: AppColors.md_theme_dark_onSurface,
-      onBackground: AppColors.md_theme_dark_onBackground,
-      onError: AppColors.md_theme_dark_error,
-      brightness: Brightness.dark);
 
   static final InputDecorationTheme _inputDecorationTheme =
       InputDecorationTheme(

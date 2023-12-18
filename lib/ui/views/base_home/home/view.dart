@@ -1,11 +1,14 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:birdworld/ui/theme/color.dart';
-import 'package:birdworld/ui/widgets/dividers/or_divider.dart';
-import 'package:birdworld/ui/widgets/image_widgets/picked_image.dart';
-
+import 'package:birdworld/ui/views/base_home/home/identification_screen/view.dart';
+import 'package:birdworld/ui/widgets/cards/chat_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+
 import 'package:stacked/stacked.dart';
+
+import '../chat/ai_chat_screen.dart';
 import 'view_model.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -13,246 +16,208 @@ class HomeView extends StackedView<HomeViewModel> {
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
+    // final AppConfProvider chatconf = Provider.of(context);
     final size = MediaQuery.of(context).size;
-
     return WillPopScope(
-        onWillPop: () {
-          return viewModel.onBack();
-        },
-        child: SafeArea(
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: Container(
-              color: viewModel.isimgload ? AppColors.blue : AppColors.skyBlue,
-              width: size.width,
-              height: size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    flex: 10,
-                    child: viewModel.isimgload
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+      onWillPop: () {
+        return viewModel.onBack();
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.md_theme_light_background,
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: size.height * 1.1),
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                        height: size.height * 0.3,
+                        width: size.width,
+                        color: AppColors.appPrimary,
+                        child: SafeArea(
+                          child: Column(
                             children: [
-                              PickedImage(
-                                  path: viewModel.image!.path,
-                                  clearfun: () => viewModel.clearImage(),
-                                  height: size.height * 0.38,
-                                  iconsize: 30,
-                                  width: size.width * 0.8),
-                            ],
-                          )
-                        : Container(
-                            height: size.height * 0.6,
-                            width: size.width,
-                            padding: EdgeInsets.zero,
-                            decoration:
-                                const BoxDecoration(color: AppColors.skyBlue),
-                            child: Lottie.asset(
-                              "assets/animations/home_animi2.json",
-                            ),
-                          ),
-                  ),
-                  _buildMidContainerWithButton(size.height * 0.065, viewModel),
-                  Flexible(
-                    flex: 9,
-                    child: Container(
-                      width: size.width,
-                      //  height: size.height * 0.4,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const OrDivider(),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.008,
-                                left: size.width * 0.075,
-                                right: size.width * 0.075),
-                            child: GestureDetector(
-                              onTap: () {
-                                viewModel.selectimgFromGallery();
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(15)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      offset: const Offset(0, 1),
-                                      blurRadius: 3,
-                                      color: Colors.blueGrey.withOpacity(0.3),
-                                    ),
-                                  ],
-                                ),
-                                child: ListTile(
-                                  leading: Icon(
-                                    FontAwesomeIcons.photoFilm,
-                                    size: size.width * 0.07,
-                                    color:
-                                        AppColors.appPrimary.withOpacity(0.9),
-                                  ),
-                                  title: Text(
-                                    "Select the Image from Gallery",
-                                    style: TextStyle(
-                                        fontSize: size.width * 0.043,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.appPrimary
-                                            .withOpacity(0.8)),
+                              SizedBox(
+                                height: size.height * 0.05,
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.05),
+                                  child: AnimatedTextKit(
+                                    repeatForever: true,
+                                    animatedTexts: [
+                                      WavyAnimatedText('Welcome to Bird World',
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 17)),
+                                    ],
+                                    isRepeatingAnimation: true,
+                                    onTap: () {
+                                      print("Tap Event");
+                                    },
                                   ),
                                 ),
                               ),
-                            ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.05),
+                                child: ListTile(
+                                    title: const Text(
+                                      "Hi, Supun",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    subtitle: const Padding(
+                                      padding: EdgeInsets.all(5.0),
+                                      child: Text(
+                                        "Welcome to Birld World",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    trailing: CircleAvatar(
+                                      backgroundImage: const AssetImage(
+                                          'assets/images/tewmplogo.png'),
+                                      backgroundColor: AppColors.appPrimary,
+                                      radius: size.width * 0.1,
+                                    )),
+                              ),
+                            ],
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(8.0),
-                          //   child: RichText(
-                          //     textAlign: TextAlign.center,
-                          //     text: TextSpan(
-                          //       style: TextStyle(
-                          //           color: AppColors.blue.withOpacity(0.9),
-                          //           fontSize: size.width * 0.048),
-                          //       children: <TextSpan>[
-                          //         TextSpan(
-                          //             text: 'Select and Upload Bird Image to\n',
-                          //             style: TextStyle()),
-                          //         TextSpan(
-                          //             text: ' Identitfy',
-                          //             style: TextStyle(
-                          //                 color: AppColors.blue.withOpacity(0.9),
-                          //                 fontSize: size.width * 0.055,
-                          //                 fontWeight: FontWeight.w600)),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * 0.008,
-                                    left: size.width * 0.04,
-                                    right: size.width * 0.04),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    viewModel.uploadimg();
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColors.darkBlue,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          offset: const Offset(0, 1),
-                                          blurRadius: 3,
-                                          color:
-                                              Colors.blueGrey.withOpacity(0.3),
+                        )),
+                    SizedBox(height: size.height * 0.16),
+                    const SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ChatCard(
+                          img: 'assets/images/bird_chat.png',
+                          title: "Idetify Birds",
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const IdentificationScreenView();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                        ChatCard(
+                          img: "assets/images/bird_chat.png",
+                          title: "Chat with Bird",
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const AIChatView();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Positioned(
+                  top: size.height * 0.23,
+                  left: size.width * 0.05,
+                  right: size.width * 0.05,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        elevation: 5,
+                        color: const Color.fromARGB(255, 226, 234, 255),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Column(
+                                //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "Search and Discover About  Birds",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: AppColors.appPrimary,
+                                              fontWeight: FontWeight.bold),
                                         ),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        const Text(
+                                          "Join our flock of bird lovers! 🕊️ Explore diverse species, share sightings, and connect with fellow enthusiasts.",
+                                          style: TextStyle(
+                                              color: AppColors.appPrimary,
+                                              fontSize: 15),
+                                        )
                                       ],
                                     ),
-                                    child: ListTile(
-                                      leading: Icon(
-                                        FontAwesomeIcons.upload,
-                                        size: size.width * 0.07,
-                                        color: AppColors.white.withOpacity(0.9),
-                                      ),
-                                      title: Text(
-                                        "Upload Image to Identify",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: size.width * 0.043,
-                                            fontWeight: FontWeight.w600,
-                                            color: AppColors.white
-                                                .withOpacity(0.9)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.01),
+                                    child: SizedBox(
+                                      //height: size.height * 0.1,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          const Text(
+                                            "Identifly",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: AppColors.white,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Icon(
+                                            const FaIcon(
+                                                    FontAwesomeIcons.arrowRight)
+                                                .icon,
+                                            size: 18,
+                                            color: AppColors.fontcolor(context),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ));
-  }
-
-  Widget _buildMidContainerWithButton(double height, HomeViewModel viewmodel) {
-    final buttonHeight = height;
-    return Stack(
-      children: [
-        // Use same background color like the second container
-        Container(
-          height: buttonHeight,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(18), topRight: Radius.circular(18))),
-        ),
-        // Translate the button
-        Transform.translate(
-          offset: Offset(0.0, -buttonHeight / 2.0),
-          child: Center(
-            child: GestureDetector(
-              onTap: () {
-                viewmodel.selectimgFromCamera();
-              },
-              child: Container(
-                height: buttonHeight,
-                decoration: BoxDecoration(
-                  color: AppColors.appPrimary.withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(buttonHeight / 4.0),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 16.0,
-                      offset: const Offset(0.0, 6.0),
-                      color: Colors.black.withOpacity(0.16),
-                    ),
-                  ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )),
+                  ),
                 ),
-                padding: const EdgeInsets.fromLTRB(24.0, 3.0, 24.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(
-                      FontAwesomeIcons.cameraRetro,
-                      size: 20.0,
-                      color: Colors.white,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        'Use camera',
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 
   @override
-  viewModelBuilder(BuildContext context) => HomeViewModel();
+  viewModelBuilder(BuildContext context) => HomeViewModel(Provider.of(context));
 
   @override
   void onViewModelReady(HomeViewModel viewModel) => viewModel.init();

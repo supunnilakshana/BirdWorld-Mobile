@@ -25,8 +25,10 @@ class ForgotPasswordViewModel extends BaseViewModel {
       _appDialogServices.loading();
       final res =
           await authService.sendResetTokenemail(email: emailcon.text.trim());
+
       _navigationService.back();
       if (res) {
+        _appDialogServices.showSnackBar("check your email..");
         _navigationService.back();
       }
     }

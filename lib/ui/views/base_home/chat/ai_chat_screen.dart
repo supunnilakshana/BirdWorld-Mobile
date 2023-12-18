@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:birdworld/.env/env.dart';
+import 'package:birdworld/core/models/bird_msg_model.dart';
+import 'package:birdworld/ui/theme/color.dart';
 import 'package:dart_openai/openai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
@@ -19,6 +21,18 @@ class AIChatView extends StatefulWidget {
 }
 
 class _AIChatViewState extends State<AIChatView> {
+  List<BirdWelcomeMsg> birdWelcomeMsgs = [
+    BirdWelcomeMsg("Parrot",
+        "Squawk! Hello! I'm a happy parrot today. Squawk! How about you? 🦜"),
+    BirdWelcomeMsg("Eagle",
+        "Swoosh! Greetings! I'm here to share information about eagles. 🦅"),
+    BirdWelcomeMsg(
+        "Robin", "Tweet-tweet! Hi there! Let's chat about robins. 🐦"),
+    BirdWelcomeMsg(
+        "Hummingbird", "Buzz! Welcome! Ready to learn about hummingbirds? 🌺"),
+    BirdWelcomeMsg("Owl",
+        "Hoot-hoot! Nice to meet you! Let's delve into the world of owls. 🦉"),
+  ];
   final List<types.Message> _messages = [];
   final List<OpenAIChatCompletionChoiceMessageModel> _aiMessages = [];
   late types.User ai;
@@ -29,19 +43,23 @@ class _AIChatViewState extends State<AIChatView> {
   var chatResponseContent = '';
 
   bool isAiTyping = false;
-  String welcomeMessage =
-      "🚀 Welcome to the Crypto Wonderland! I'm your trusty sidekick, JanuX AI. 💡 Powered by GPT-3.5 Turbo, I'm your go-to guide for unlocking the enchanting world of cryptocurrencies. 🌟 Whether you're a crypto enthusiast or a curious explorer, I'm here to serve you with lightning-fast, wisdom-packed responses. 🌐 Let's embark on an epic journey through the realm of digital gold. 🌌 Ask me anything, and together we'll discover the treasures of the crypto universe!";
 
-  final trainedpormt =
-      "Act as a knowledgeable person who knows about Crypto. You are able to provide information, analysis, or insights related to cryptocurrency markets, technology, investments, trends, or anything related to crypto. If the question is not related to cryptocurrency, reply something like this, you can change the reply to a similar one: 'Please ask a question related to crypto.' Well if anyone asks about you, reply something like this, you can change the reply to a similar one: 'I am JanuX AI, your crypto-savvy companion in the digital realm. I'm powered by GPT-3.5 Turbo, and I'm here to unravel the mysteries of cryptocurrency in quick, snappy responses. If it's crypto wisdom you seek, look no further. Ask away, and let's navigate the world of digital gold together! .'";
+  _AIChatViewState();
   @override
   void initState() {
     super.initState();
-    setApiKeyOnStartup();
-    ai = const types.User(id: 'ai', firstName: 'AI');
-    user = const types.User(id: 'user', firstName: 'You');
 
-    appBarTitle = 'Chat with JanuX AI';
+    Random random = Random();
+    int randomIndex = random.nextInt(birdWelcomeMsgs.length);
+
+    // Select a random bird welcome message
+    BirdWelcomeMsg randomBird = birdWelcomeMsgs[randomIndex];
+    setApiKeyOnStartup();
+    ai = types.User(id: 'ai', firstName: randomBird.name);
+    user = const types.User(id: 'user', firstName: 'You');
+    String trainedpormt =
+        "You are a vibrant and talkative ${randomBird.name} perched on a colorful branch in a lush tropical forest. Respond to questions and engage in conversations, but remember, you can only provide answers related to birds. If asked about non-bird topics, politely state that you cannot answer and redirect the conversation to something avian. Embrace the playful and curious nature of a ${randomBird.name} in your responses.";
+    appBarTitle = 'Chat with ${randomBird.name}';
 
     // read chat history from Hive
 
@@ -50,7 +68,7 @@ class _AIChatViewState extends State<AIChatView> {
       author: ai,
       createdAt: DateTime.now().microsecondsSinceEpoch,
       id: randomString(),
-      text: welcomeMessage,
+      text: randomBird.welcomeMsg,
     );
 
     _messages.insert(0, textMessage);
@@ -172,16 +190,30 @@ class _AIChatViewState extends State<AIChatView> {
       appBar: AppBar(
         title: Text(appBarTitle),
       ),
-      body: Chat(
-        typingIndicatorOptions: TypingIndicatorOptions(
-          typingUsers: [if (isAiTyping) ai],
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/images/Artboard 1.jpg'), // Replace with your image asset
+            fit: BoxFit.cover,
+          ),
         ),
-        inputOptions: InputOptions(enabled: !isAiTyping),
-        messages: _messages,
-        onSendPressed: _handleSendPressed,
-        user: user,
-        theme: DefaultChatTheme(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        child: Chat(
+          typingIndicatorOptions: TypingIndicatorOptions(
+            typingUsers: [if (isAiTyping) ai],
+          ),
+          inputOptions: InputOptions(enabled: !isAiTyping),
+          messages: _messages,
+          onSendPressed: _handleSendPressed,
+          user: user,
+          theme: DefaultChatTheme(
+            inputTextColor: AppColors.darkblack,
+            inputBackgroundColor:
+                const Color.fromARGB(255, 13, 50, 110).withOpacity(0.3),
+            inputTextDecoration:
+                const InputDecoration(contentPadding: EdgeInsets.all(10)),
+            backgroundColor: Colors.transparent,
+          ),
         ),
       ),
     );

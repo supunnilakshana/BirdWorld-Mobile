@@ -57,8 +57,8 @@ class PostComment {
     return PostComment(
       id: map['id'] as int,
       context: map['context'] as String,
-      created: DateTime.fromMillisecondsSinceEpoch(map['created'] as int),
-      updated: DateTime.fromMillisecondsSinceEpoch(map['updated'] as int),
+      created: DateTime.parse(map['created']),
+      updated: DateTime.parse(map['updated']),
       postID: map['postID'] as int,
       userId: map['userId'] as String,
       user: AppUser.fromMap(map['user'] as Map<String, dynamic>),
