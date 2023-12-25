@@ -71,33 +71,29 @@ class CommunityView extends StackedView<CommunityViewModel> {
               viewModel.fetchingstatus == FetchingStatus.wating
                   ? const Center(child: PrimaryLoading())
                   : viewModel.fetchingstatus == FetchingStatus.sucess
-                      ? viewModel.postlist.isEmpty
-                          ? const Center(child: EmptyView())
-                          : ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: viewModel.dataProvider.posts.length,
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  children: [
-                                    PostItem(
-                                      post: viewModel.dataProvider.posts[index],
-                                      commentfun: () {
-                                        viewModel.openCommentBottom(
-                                            context,
-                                            viewModel
-                                                .dataProvider.posts[index]);
-                                      },
-                                    ),
-                                    const Divider(
-                                      thickness: 1,
-                                      color: AppColors.white_gray,
-                                      height: 2,
-                                    ),
-                                  ],
-                                );
-                              },
-                            )
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: viewModel.postlist.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                PostItem(
+                                  post: viewModel.postlist[index],
+                                  commentfun: () {
+                                    viewModel.openCommentBottom(
+                                        context, viewModel.postlist[index]);
+                                  },
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                  color: AppColors.white_gray,
+                                  height: 2,
+                                ),
+                              ],
+                            );
+                          },
+                        )
                       : const Errorpage(),
             ],
           ),
@@ -107,8 +103,7 @@ class CommunityView extends StackedView<CommunityViewModel> {
   }
 
   @override
-  viewModelBuilder(BuildContext context) =>
-      CommunityViewModel(Provider.of(context));
+  viewModelBuilder(BuildContext context) => CommunityViewModel();
 
   @override
   void onViewModelReady(CommunityViewModel viewModel) => viewModel.init();

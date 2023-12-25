@@ -20,4 +20,5 @@ class APIendPonts {
   static const String createComment = "comment/Create";
   static const String updateComment = "comment/Update";
   static const String deleteCommentById = "comment/Delete/";
+  static const String predict = "predict";
 }

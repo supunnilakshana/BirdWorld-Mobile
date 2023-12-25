@@ -20,6 +20,6 @@ class Images {
   // icons
   static const String cartIcon = 'assets/icons/shopping-cart.png';
   static const String shoppingBag = 'assets/icons/shopping-cart.png';
-  static const String sneakers = 'assets/icons/google_icon.svg';
+  static const String sneakers = 'assets/icons/bird-svgrepo-com.svg';
   static const String avatar = 'assets/icons/shopping-cart.png';
 }

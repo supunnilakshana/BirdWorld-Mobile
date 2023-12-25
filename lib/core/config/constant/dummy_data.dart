@@ -9,52 +9,32 @@ import 'images.dart';
 
 List<Product> products = [
   Product(
-      name: 'Air Max Sequent 4 Shield',
-      brand: 'nike',
+      name: 'Feathered Wings T-Shirt',
+      brand: 'AviaWear',
       description:
-          'The Air Jordan 1 Mid shoe is inspired by the first AJ1, offering fans of Jordan retros a chance to follow in the footsteps of the greatness.',
-      price: 115,
-      rating: 5,
-      productColors: [
-        Colors.grey.shade600,
-        Colors.purple.shade400,
-        Colors.pink.shade300,
-        Colors.blue.shade400
-      ],
-      productImages: [
-        Images.sh1,
-        Images.sh2,
-        Images.sh3,
-        Images.sh4,
-        Images.sh6,
-      ]),
-  Product(
-      name: 'Nike High Run Pro',
-      brand: 'nike',
-      description:
-          'The Air Jordan 1 Mid shoe is inspired by the first AJ1, offering fans of Jordan retros a chance to follow in the footsteps of the greatness.',
-      price: 235,
-      rating: 5,
+          'Show your love for birds with our Feathered Wings T-Shirt. This stylish shirt features a unique design inspired by the colorful plumage of exotic birds.',
+      price: 25,
+      rating: 4,
       productColors: [
         Colors.blue.shade200,
-        Colors.teal.shade400,
-        Colors.purple.shade400,
-        Colors.blue.shade400
+        Colors.green.shade400,
+        Colors.red.shade300,
+        Colors.yellow.shade500,
       ],
       productImages: [
-        Images.sh2,
         Images.sh1,
+        Images.sh2,
         Images.sh3,
         Images.sh4,
         Images.sh6,
       ]),
   Product(
-      name: 'Random Color Shoe',
-      brand: 'adidas',
+      name: 'Gourmet Bird Seeds Mix',
+      brand: 'Avian Delight',
       description:
-          'The Air Jordan 1 Mid shoe is inspired by the first AJ1, offering fans of Jordan retros a chance to follow in the footsteps of the greatness.',
-      price: 80,
-      rating: 4,
+          'Treat your feathered friends to a feast with our Gourmet Bird Seeds Mix. Packed with premium seeds and nuts, it\'s the perfect blend to attract a variety of beautiful birds to your backyard.',
+      price: 30,
+      rating: 5,
       productColors: [
         Colors.orange.shade300,
         Colors.teal.shade400,
@@ -62,6 +42,26 @@ List<Product> products = [
         Colors.blue.shade400
       ],
       productImages: [
+        Images.sh2,
+        Images.sh1,
+        Images.sh3,
+        Images.sh4,
+        Images.sh6,
+      ]),
+  Product(
+      name: 'Birdwatcher\'s Binoculars',
+      brand: 'EagleEyes',
+      description:
+          'Enhance your birdwatching experience with our high-quality Birdwatcher\'s Binoculars. Get a close-up view of your favorite feathered friends in their natural habitat.',
+      price: 120,
+      rating: 5,
+      productColors: [
+        Colors.green.shade600,
+        Colors.teal.shade400,
+        Colors.purple.shade400,
+        Colors.blue.shade400
+      ],
+      productImages: [
         Images.sh3,
         Images.sh2,
         Images.sh1,
@@ -69,11 +69,11 @@ List<Product> products = [
         Images.sh6,
       ]),
   Product(
-      name: 'Air Max 270 Ultramarine',
-      brand: 'nike',
+      name: 'Songbird Melody Playlist',
+      brand: 'MelodicNest',
       description:
-          'The Air Jordan 1 Mid shoe is inspired by the first AJ1, offering fans of Jordan retros a chance to follow in the footsteps of the greatness.',
-      price: 80,
+          'Immerse yourself in the enchanting world of birdsong with our Songbird Melody Playlist. Experience the soothing tunes of various bird species to create a relaxing atmosphere.',
+      price: 15,
       rating: 4,
       productColors: [
         Colors.grey.shade600,
@@ -89,11 +89,11 @@ List<Product> products = [
         Images.sh3,
       ]),
   Product(
-      name: 'Runner Pro High Sole',
-      brand: 'adidas',
+      name: 'Avian Explorer Backpack',
+      brand: 'WingWander',
       description:
-          'The Air Jordan 1 Mid shoe is inspired by the first AJ1, offering fans of Jordan retros a chance to follow in the footsteps of the greatness.',
-      price: 80,
+          'Embark on birdwatching adventures with our Avian Explorer Backpack. Designed for bird enthusiasts, this backpack is equipped with special compartments for your binoculars, field guide, and more.',
+      price: 50,
       rating: 4,
       productColors: [
         Colors.amber.shade600,

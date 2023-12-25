@@ -137,7 +137,7 @@ class IdentificationScreenView
                                 right: size.width * 0.04),
                             child: GestureDetector(
                               onTap: () {
-                                viewModel.delayedShowBirdDialog(context);
+                                viewModel.uploadimg(context);
                               },
                               child: Container(
                                 decoration: BoxDecoration(

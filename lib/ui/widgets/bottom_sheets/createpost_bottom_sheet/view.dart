@@ -104,7 +104,7 @@ class CreatePostBottomSheetView
                       children: [
                         ListTile(
                           title: Text(
-                            "Ponsika Polaj",
+                            "${viewModel.appUserProvider.getappUser!.firstName} ${viewModel.appUserProvider.getappUser!.lastName}",
                             style: TextStyle(
                                 color: AppColors.darkblack.withOpacity(0.9),
                                 fontWeight: FontWeight.w500),
@@ -114,7 +114,7 @@ class CreatePostBottomSheetView
                           leading: CircleAvatar(
                             radius: size.width * 0.05,
                             backgroundImage: const NetworkImage(
-                                "https://previews.123rf.com/images/realityimages/realityimages1803/realityimages180300953/97894659-indian-boy-posing-with-motorbike-at-pune-maharashtra.jpg"),
+                                "https://firebasestorage.googleapis.com/v0/b/birdworld-137aa.appspot.com/o/user34.png?alt=media&token=6c6ff817-7115-4166-9090-a3aafae3c93f"),
                           ),
                         ),
                         Padding(
@@ -222,7 +222,8 @@ class CreatePostBottomSheetView
 
   @override
   viewModelBuilder(BuildContext context) => CreatePostBottomSheetViewModel(
-      Provider.of(context), Provider.of(context));
+        Provider.of(context),
+      );
 
   @override
   void onViewModelReady(CreatePostBottomSheetViewModel viewModel) =>

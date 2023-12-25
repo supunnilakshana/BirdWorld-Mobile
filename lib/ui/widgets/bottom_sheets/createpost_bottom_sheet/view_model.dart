@@ -6,7 +6,7 @@ import 'package:birdworld/core/models/post.dart';
 import 'package:birdworld/core/service/api_services/comminity_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
 import 'package:birdworld/core/service/providers/app_user_provider.dart';
-import 'package:birdworld/core/service/providers/com_dumm_provider.dart';
+
 import 'package:birdworld/core/service/storage_services/cloud_storage_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +22,11 @@ class CreatePostBottomSheetViewModel extends BaseViewModel {
   final TextEditingController contnetcon = TextEditingController();
   final AppUserProvider appUserProvider;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  CreatePostBottomSheetViewModel(this.appUserProvider, this._dataProvider);
+  CreatePostBottomSheetViewModel(
+    this.appUserProvider,
+  );
   final ImagePicker _picker = ImagePicker();
-  final DataProvider _dataProvider;
+
   XFile? image;
   bool isimgload = false;
   void init() {}
@@ -87,7 +89,7 @@ class CreatePostBottomSheetViewModel extends BaseViewModel {
             comments: [],
             likes: []);
         print(post.toMap());
-        _dataProvider.addPost(post);
+
         await CommunityService().createPost(post);
         print("done");
         _navigationService.popRepeated(2);

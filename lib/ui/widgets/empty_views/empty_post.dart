@@ -5,6 +5,6 @@ class EmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("ghgh");
+    return Text("Empty Data");
   }
 }
