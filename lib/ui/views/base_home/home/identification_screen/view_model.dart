@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:birdworld/core/config/app/app_api_keys.dart';
+import 'package:birdworld/.env/env.dart';
 import 'package:birdworld/core/service/api_services/comminity_service.dart';
 import 'package:birdworld/core/service/authentication/auth_service.dart';
 import 'package:birdworld/core/service/dialog_service/dialog_service.dart';
@@ -108,7 +108,7 @@ class IdentificationScreenViewModel extends BaseViewModel {
         final res =
             await BirdIdentificationService().predictImage(File(image!.path));
         if (res.status == 'IDENTIFILED') {
-          OpenAI.apiKey = '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';
+          OpenAI.apiKey = AppAPIKeys.spOpenApiKey;
           final completion = await OpenAI.instance.completion.create(
             maxTokens: 1500,
             model: "text-davinci-003",
